@@ -5,9 +5,11 @@ import { ToastContainer } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import 'react-toastify/dist/ReactToastify.css';
 
-import './App.scss';
 import store from './store';
 import { Routes } from './Routes';
+
+import './App.scss';
+import './plot-styles.scss';
 import './react-toastify-styles.scss';
 
 // eslint-disable-next-line no-undef

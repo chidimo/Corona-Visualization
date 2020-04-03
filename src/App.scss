@@ -1,1 +1,19 @@
 @import '~bootstrap/scss/bootstrap';
+
+.app-body__parent {
+  display: flex;
+  min-height: 100vh;
+  padding: 65px 0 0;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.app-body-container {
+  text-align: center;
+
+  // .middle-column {
+  // }
+}
+
+.app-footer {
+  text-align: center;
+}
