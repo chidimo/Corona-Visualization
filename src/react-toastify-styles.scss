@@ -1,0 +1,62 @@
+// variables
+
+$info_color: #17a2b8 !default;
+$warn_color: #ffc107 !default;
+$error_color: #ee0022 !default;
+$success_color: #34a853 !default;
+$toast_box_shadow: rgba(248, 175, 175, 0.1) !default;
+
+// mixins
+@mixin toast_style($toast_color, $toast_box_shadow) {
+  overflow: hidden;
+  position: relative;
+  color: #000 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  border: 1px solid $toast_color !important;
+  box-shadow: 0px 1px 5px $toast_box_shadow !important;
+
+  &:after {
+    top: 0;
+    left: 0;
+    content: '';
+    width: 7px;
+    height: 100%;
+    position: absolute;
+    display: inline-block;
+    background-color: $toast_color;
+  }
+}
+
+// styles
+.Toastify__toast-body {
+  padding-left: 15px !important;
+}
+
+.toast-warn-container {
+  @include toast_style($warn_color, $toast_box_shadow);
+  & .progress__background {
+    background: $warn_color;
+  }
+}
+
+.toast-error-container {
+  @include toast_style($error_color, $toast_box_shadow);
+  & .progress__background {
+    background: $error_color;
+  }
+}
+
+.toast-success-container {
+  @include toast_style($success_color, $toast_box_shadow);
+  & .progress__background {
+    background: $success_color;
+  }
+}
+
+.toast-info-container {
+  @include toast_style($info_color, $toast_box_shadow);
+  & .progress__background {
+    background: $info_color;
+  }
+}

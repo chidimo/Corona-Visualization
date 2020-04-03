@@ -1,26 +1,33 @@
+/* eslint-disable no-console */
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import * as Sentry from '@sentry/browser';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+import './App.scss';
+import store from './store';
+import { Routes } from './Routes';
+import './react-toastify-styles.scss';
+
+// eslint-disable-next-line no-undef
+process.env.NODE_ENV === 'production' &&
+  Sentry.init({
+    dsn: 'https://cfb32132996b43baad8022e6bf6e07eb@sentry.io/1824714',
+  });
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ToastContainer
+        autoClose={2000}
+        position="top-center"
+        className="toast-container"
+        toastClassName="dark-toast"
+      />
+      <Routes />
+    </Provider>
   );
-}
+};
 
 export default App;
