@@ -2,23 +2,20 @@
 import React, { Suspense, lazy } from 'react';
 import { Router } from '@reach/router';
 
-import { Oval } from '../components/Loaders';
-import { Error404 } from '../components/Error404';
-import { Navigation } from '../components/Navigation';
-import { ErrorBoundary } from '../components/ErrorBoundary';
+import { Oval } from './components/Loaders';
+import { Error404 } from './components/Error404';
+import { Navigation } from './components/Navigation';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-import { retryLazy } from './retryLazy'
-
-const WorldCases = lazy(() => retryLazy(() => import('../pages/WorldCases')));
-const SidebarLeft = lazy(() => retryLazy(() => import('../pages/SidebarLeft')));
-const SidebarRight = lazy(() => retryLazy(() => import('../pages/SidebarRight')));
-const Country = lazy(() => retryLazy(() => import('../pages/countries/Country')));
-const Countries = lazy(() => retryLazy(() => import('../pages/countries/Countries')));
-
+const WorldCases = lazy(() => import('./pages/WorldCases'))
+const SidebarLeft = lazy(() => import('./pages/SidebarLeft'))
+const SidebarRight = lazy(() => import('./pages/SidebarRight'))
+const Country = lazy(() => import('./pages/countries/Country'))
+const Countries = lazy(() => import('./pages/countries/Countries'))
 
 export const Routes = () => {
   return (

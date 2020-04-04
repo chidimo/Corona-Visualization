@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/browser';
 import 'react-toastify/dist/ReactToastify.css';
 
 import store from './store';
-import { Routes } from './routes/Routes';
+import { Routes } from './Routes';
 
 import './App.scss';
 import './plot-styles.scss';
@@ -19,8 +19,9 @@ process.env.NODE_ENV === 'production' &&
     dsn: 'https://cfb32132996b43baad8022e6bf6e07eb@sentry.io/1824714',
   });
 
-// eslint-disable-next-line no-undef
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || 'https://coronacharts.herokuapp.com/api/v1';
+axios.defaults.baseURL =
+  // eslint-disable-next-line no-undef
+  process.env.REACT_APP_BASE_URL || 'https://coronacharts.herokuapp.com/api/v1';
 
 const App = () => {
   return (
