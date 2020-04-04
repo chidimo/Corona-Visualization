@@ -20,7 +20,7 @@ process.env.NODE_ENV === 'production' &&
   });
 
 // eslint-disable-next-line no-undef
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || 'https://coronacharts.herokuapp.com/api/v1';
 
 const App = () => {
   return (

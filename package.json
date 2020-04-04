@@ -2,6 +2,7 @@
   "name": "corona-visuals",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://chidimo.github.io/Corona-Visualization",
   "dependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
@@ -18,6 +19,7 @@
     "chartjs": "^0.3.24",
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.2",
     "react": "^16.13.1",
@@ -39,7 +41,9 @@
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint ./src",
     "pretty": "prettier --write '**/*.{ts,js,scss,html,json,md}' '!build/**' '!public/**' '!coverage/**' '!media/**'",
-    "postpretty": "yarn lint --fix"
+    "postpretty": "yarn lint --fix",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
