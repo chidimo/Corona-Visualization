@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const Landing = lazy(() => import('./pages/Landing'));
+const WorldCases = lazy(() => import('./pages/WorldCases'));
 const Country = lazy(() => import('./pages/countries/Country'));
 const Countries = lazy(() => import('./pages/countries/Countries'));
 
@@ -30,7 +30,7 @@ export const Routes = () => {
 
             <Col sm="8" className="middle-column">
               <Router>
-                <Landing path="/" />
+                <WorldCases path="/" />
                 <Countries path="countries" />
                 <Country path="countries/:_id" />
                 <Error404 default />

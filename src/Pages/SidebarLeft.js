@@ -62,10 +62,18 @@ export const SidebarLeft = () => {
       ) : (
         <Container className="countries-list">
           {info.displayCountries.map((c) => {
-            const { _id, name } = c;
+            const { _id, name, short_name } = c;
             return (
               <div className="nav-item" key={_id}>
-                <Link to={`countries/${_id}`}>{name}</Link>
+                <div className="flag-container">
+                  <img
+                    src={`https://www.countryflags.io/${short_name}/shiny/24.png`}
+                    alt="Flag"
+                  />
+                </div>
+                <Link state={{ name, short_name }} to={`countries/${_id}`}>
+                  {name}
+                </Link>
               </div>
             );
           })}
