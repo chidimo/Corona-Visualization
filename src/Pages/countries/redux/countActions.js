@@ -35,6 +35,10 @@ export const getCountryCases = (_id) => async (dispatch) => {
   }
 };
 
+export const cleanGetCountryCases = () => async (dispatch) => {
+  dispatch({ type: countAT.CLEAN_GET_COUNTRY_CASES });
+};
+
 export const getCasesByCountryName = (name) => async (dispatch) => {
   dispatch({
     type: countAT.GETTING_CASES_BY_COUNTRY_NAME,

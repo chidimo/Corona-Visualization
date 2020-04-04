@@ -18,7 +18,7 @@
 
   .chart-header {
     display: flex;
-    padding: 20px 8px 20px 2rem;
+    padding: 0.5rem 2rem;
     background: #f8fafb;
     justify-content: space-between;
 
@@ -66,10 +66,30 @@
   margin-right: 15px;
   justify-content: flex-end;
 
-  #learners-pie-legend,
-  #instructors-pie-legend {
+  #pie-chart-legend {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+}
+
+#custom-tooltip-div-id {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #111111;
+  border-radius: 4px;
+  padding: 10px;
+  background: #ffffff;
+  border: 0.5px solid #dfe2e6;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+
+  & div {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  & div#value {
+    font-weight: bold;
   }
 }

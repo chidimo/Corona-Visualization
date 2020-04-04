@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from 'react-bootstrap/Container';
 
@@ -13,7 +14,12 @@ export const CountryPageTitle = (props) => {
           alt="Flag"
         />
       </div>
-      <h2>Covid19 Cases in {name}</h2>
+      <h2>{name}</h2>
     </Container>
   );
+};
+
+CountryPageTitle.propTypes = {
+  name: PropTypes.string,
+  short_name: PropTypes.string,
 };

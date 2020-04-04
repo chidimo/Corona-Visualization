@@ -21,6 +21,8 @@ export const cont = (state = initialState, action) => {
     return { ...state, countryCases: action.cases };
   case countAT.GETTING_COUNTRY_CASES:
     return { ...state, gettingCountryCases: action.true_or_false };
+  case countAT.CLEAN_GET_COUNTRY_CASES:
+    return { ...state, countryCases: [] };
 
   case countAT.GETTING_CASES_BY_COUNTRY_NAME:
     return { ...state, gettingCasesByCountryName: action.true_or_false };

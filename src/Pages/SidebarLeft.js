@@ -11,7 +11,7 @@ import { getCountries } from './countries/redux/countActions';
 import { BorderSpinner } from './Spinners';
 import { filterCountRed } from './reducers';
 
-export const SidebarLeft = () => {
+const SidebarLeft = () => {
   const dispatch = useDispatch();
   const { countries, gettingCountries } = useSelector((state) => state.cont);
 
@@ -82,3 +82,5 @@ export const SidebarLeft = () => {
     </Container>
   );
 };
+
+export default SidebarLeft;
