@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/countries/Countries.js"],"names":["Countries"],"mappings":"wHAAA,2BAMeA,UAJG,WAChB,OAAO","file":"static/js/9.17e69a63.chunk.js","sourcesContent":["import React from 'react';\n\nconst Countries = () => {\n  return <div>countries</div>;\n};\n\nexport default Countries;\n"],"sourceRoot":""}

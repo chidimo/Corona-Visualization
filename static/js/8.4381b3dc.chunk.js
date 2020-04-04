@@ -1,0 +1,2 @@
+(this["webpackJsonpcorona-visuals"]=this["webpackJsonpcorona-visuals"]||[]).push([[8],{269:function(a,e,s){"use strict";s.r(e);var i=s(0),r=s.n(i),t=s(45);e.default=function(){return r.a.createElement(t.a,{fluid:!0,className:"right-sidebar sidebar"},r.a.createElement("div",null,"right sidebar"))}}}]);
+//# sourceMappingURL=8.4381b3dc.chunk.js.map
