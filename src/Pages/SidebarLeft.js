@@ -61,16 +61,14 @@ export const SidebarLeft = () => {
         <BorderSpinner />
       ) : (
         <Container className="countries-list">
-          <Container>
-            {info.displayCountries.map((c) => {
-              const { _id, name } = c;
-              return (
-                <div className="nav-item" key={_id}>
-                  <Link to={`countries/${_id}`}>{name}</Link>
-                </div>
-              );
-            })}
-          </Container>
+          {info.displayCountries.map((c) => {
+            const { _id, name } = c;
+            return (
+              <div className="nav-item" key={_id}>
+                <Link to={`countries/${_id}`}>{name}</Link>
+              </div>
+            );
+          })}
         </Container>
       )}
     </Container>

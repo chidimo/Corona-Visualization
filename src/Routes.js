@@ -23,13 +23,12 @@ export const Routes = () => {
         <Navigation />
 
         <Container fluid className="top-level-container">
-          {/* <Container className="app-body__parent"> */}
           <Row className="top-level-row">
             <Col sm className="left-column">
               <SidebarLeft />
             </Col>
 
-            <Col sm xs={7} className="middle-column">
+            <Col sm="8" className="middle-column">
               <Router>
                 <Landing path="/" />
                 <Countries path="countries" />
@@ -42,7 +41,6 @@ export const Routes = () => {
               <SidebarRight />
             </Col>
           </Row>
-          {/* </Container> */}
         </Container>
       </Suspense>
     </ErrorBoundary>

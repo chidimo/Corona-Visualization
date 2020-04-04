@@ -1,33 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
-// .app-body__parent {
-//   padding-top: 57px;
-
-//   .left-sidebar {
-//     text-align: left;
-//     background-color: #f7f7f7;
-//   }
-//   .countries-list {
-//     padding: 0;
-//     overflow-y: auto;
-//     max-height: calc(100vh - 7rem);
-//   }
-
-//   .right-sidebar {
-//     background-color: #f7f7f7;
-//   }
-// }
-
-// .country-graph-page {
-//   overflow-y: auto;
-//   max-height: calc(100vh - 2rem);
-// }
-
-// .border-spinner {
-//   margin: auto;
-//   display: flex;
-//   justify-content: center;
-// }
+.top-navigation {
+  top: 0;
+  min-height: 4rem;
+}
 
 .top-level-container {
   width: 100%;
@@ -42,9 +18,9 @@
   }
 
   .middle-column {
-    padding: 2rem 4rem;
-    position: sticky;
     height: 100%;
+    position: sticky;
+    padding: 2rem 1rem;
   }
 
   .sidebar {
@@ -76,6 +52,7 @@
   .countries-list {
     padding: 0;
     overflow-y: auto;
+    align-items: flex-start;
     max-height: calc(100vh - 9rem);
   }
 }
