@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Router } from '@reach/router';
 
-import { SidebarLeft } from './components/SidebarLeft';
+import { SidebarLeft } from './pages/SidebarLeft';
 import { SidebarRight } from './components/SidebarRight';
 import { Oval } from './components/Loaders';
 import { Error404 } from './components/Error404';
@@ -12,8 +12,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-import Footer from './components/Footer';
 const Landing = lazy(() => import('./pages/Landing'));
+const Country = lazy(() => import('./pages/countries/Country'));
 const Countries = lazy(() => import('./pages/countries/Countries'));
 
 export const Routes = () => {
@@ -22,28 +22,27 @@ export const Routes = () => {
       <Suspense fallback={<Oval />}>
         <Navigation />
 
-        <Container fluid className="app-body__parent">
-          <Container fluid className="app-body-container">
-            <Row>
-              <Col>
-                <SidebarLeft />
-              </Col>
+        <Container fluid className="top-level-container">
+          {/* <Container className="app-body__parent"> */}
+          <Row className="top-level-row">
+            <Col sm className="left-column">
+              <SidebarLeft />
+            </Col>
 
-              <Col xs={5} className="middle-column">
-                <Router>
-                  <Landing path="/" />
-                  <Countries path="countries" />
-                  <Error404 default />
-                </Router>
-              </Col>
+            <Col sm xs={7} className="middle-column">
+              <Router>
+                <Landing path="/" />
+                <Countries path="countries" />
+                <Country path="countries/:_id" />
+                <Error404 default />
+              </Router>
+            </Col>
 
-              <Col>
-                <SidebarRight />
-              </Col>
-            </Row>
-          </Container>
-
-          <Footer />
+            <Col sm className="right-column">
+              <SidebarRight />
+            </Col>
+          </Row>
+          {/* </Container> */}
         </Container>
       </Suspense>
     </ErrorBoundary>

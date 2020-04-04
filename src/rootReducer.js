@@ -1,6 +1,6 @@
 import { loadingBarReducer } from 'react-redux-loading-bar';
 
-// import ORG from './orgReducer';
+import { cont } from './pages/countries/redux/countReducer';
 
 export default (state = {}, action) => {
   if (action.type === 'LOGOUT_USER') {
@@ -8,8 +8,7 @@ export default (state = {}, action) => {
   }
 
   return {
-    // ORG: ORG(state.ORG, action, state),
-
+    cont: cont(state.cont, action, state),
     loadingBar: loadingBarReducer(state.loadingBar, action, state),
   };
 };

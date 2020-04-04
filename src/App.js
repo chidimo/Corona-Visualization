@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
+import axios from 'axios';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
@@ -17,6 +18,9 @@ process.env.NODE_ENV === 'production' &&
   Sentry.init({
     dsn: 'https://cfb32132996b43baad8022e6bf6e07eb@sentry.io/1824714',
   });
+
+// eslint-disable-next-line no-undef
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 const App = () => {
   return (

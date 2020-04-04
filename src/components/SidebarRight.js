@@ -1,5 +1,10 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 
 export const SidebarRight = () => {
-  return <div>SidebarRight</div>;
+  return (
+    <Container fluid className="right-sidebar sidebar">
+      <div>right sidebar</div>
+    </Container>
+  );
 };

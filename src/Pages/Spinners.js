@@ -2,17 +2,13 @@ import React from 'react';
 
 import Spinner from 'react-bootstrap/Spinner';
 
-export const Oval = () => {
+export const BorderSpinner = () => {
   return (
     <Spinner
-      style={{
-        margin: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
+      size="lg"
       animation="border"
       role="status"
+      className="border-spinner"
     >
       <span className="sr-only">Loading...</span>
     </Spinner>
