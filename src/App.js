@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/browser';
 import 'react-toastify/dist/ReactToastify.css';
 
 import store from './store';
-import { Routes } from './Routes';
+import { Routes } from './routes/Routes';
 
 import './App.scss';
 import './plot-styles.scss';
