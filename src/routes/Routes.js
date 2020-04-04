@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { Suspense, lazy } from 'react';
 import { Router } from '@reach/router';
 
@@ -32,7 +33,7 @@ export const Routes = () => {
             </Col>
 
             <Col sm="8" className="middle-column">
-              <Router>
+              <Router basename={process.env.PUBLIC_URL}>
                 <WorldCases path="/" />
                 <Countries path="countries" />
                 <Country path="countries/:_id" />
