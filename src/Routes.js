@@ -30,7 +30,7 @@ export const Routes = () => {
             </Col>
 
             <Col sm="8" className="middle-column">
-              <Router basename={process.env.PUBLIC_URL}>
+              <Router basepath={process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : '/'}>
                 <WorldCases path="/" />
                 <Countries path="countries" />
                 <Country path="countries/:_id" />
