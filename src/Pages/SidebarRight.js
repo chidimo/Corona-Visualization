@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import { getMostRecentCase } from './countries/redux/countActions';
+import {
+  getMostRecentCase,
+  cleanMostRecentCase,
+} from './countries/redux/countActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { BorderSpinner } from './Spinners';
 import { localeFromTSOrdinal } from '../dateUtils';
 
 const SidebarRight = () => {
   const dispatch = useDispatch();
-  const _id = window.location.href.match(/countries\/(.*)/)[1];
+  const match = window.location.href.match(/countries\/(.*)/);
+  const _id = match ? match[1] : '';
 
   const { mostRecentCase, gettingMostRecentCase } = useSelector(
     (state) => state.cont
@@ -22,7 +26,14 @@ const SidebarRight = () => {
   } = mostRecentCase;
 
   useEffect(() => {
-    getMostRecentCase(_id)(dispatch);
+    if (_id) {
+      getMostRecentCase(_id)(dispatch);
+    } else {
+      getMostRecentCase('World', 'name')(dispatch);
+    }
+    return () => {
+      cleanMostRecentCase()(dispatch);
+    };
   }, [ _id, dispatch ]);
 
   return (
@@ -36,10 +47,10 @@ const SidebarRight = () => {
       ) : (
         <Container className="most-recent-case">
           <h4>{localeFromTSOrdinal(recordDate)}</h4>
-          <p>{new_cases} new cases</p>
           <p>{total_cases} total cases</p>
-          <p>{new_deaths} new deaths</p>
+          <p>{new_cases} new cases</p>
           <p>{total_deaths} total deaths</p>
+          <p>{new_deaths} new deaths</p>
         </Container>
       )}
     </Container>

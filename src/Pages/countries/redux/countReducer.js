@@ -1,5 +1,13 @@
 import { countAT } from './countAT';
 
+const mostRecentCase = {
+  _id: '',
+  new_cases: 0,
+  total_cases: 0,
+  new_deaths: 0,
+  total_deaths: 0,
+};
+
 const initialState = {
   countries: [],
   gettingCountries: true,
@@ -7,7 +15,7 @@ const initialState = {
   countryCases: [],
   gettingCountryCases: true,
 
-  mostRecentCase: { _id: '' },
+  mostRecentCase,
   gettingMostRecentCase: true,
 
   gettingCasesByCountryName: true,
@@ -32,8 +40,14 @@ export const cont = (state = initialState, action) => {
   case countAT.GET_CASES_BY_COUNTRY_NAME:
     return { ...state, countryCases: action.cases };
 
+  case countAT.CLEAN_MOST_RECENT_CASE:
+    return { ...state, mostRecentCase };
   case countAT.GET_MOST_RECENT_CASE:
-    return { ...state, mostRecentCase: action.result && action.result[0] };
+    return {
+      ...state,
+      mostRecentCase:
+          action.result.length > 0 ? action.result[0] : state.mostRecentCase,
+    };
   case countAT.GETTING_MOST_RECENT_CASE:
     return { ...state, gettingMostRecentCase: action.true_or_false };
   default:
