@@ -11,11 +11,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const WorldCases = lazy(() => import('./pages/WorldCases'))
-const SidebarLeft = lazy(() => import('./pages/SidebarLeft'))
-const SidebarRight = lazy(() => import('./pages/SidebarRight'))
-const Country = lazy(() => import('./pages/countries/Country'))
-const Countries = lazy(() => import('./pages/countries/Countries'))
+const WorldCases = lazy(() => import('./pages/WorldCases'));
+const SidebarLeft = lazy(() => import('./pages/SidebarLeft'));
+const SidebarRight = lazy(() => import('./pages/SidebarRight'));
+const Country = lazy(() => import('./pages/countries/Country'));
+const Countries = lazy(() => import('./pages/countries/Countries'));
 
 export const Routes = () => {
   return (

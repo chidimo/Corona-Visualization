@@ -9,7 +9,7 @@ import {
 
 import { bgColors, borderColors } from './colors';
 
-import { CountryPageTitle } from '../components/CountryPageTitle';
+import { CountryPageTitle } from './countries/CountryPageTitle';
 import CovidLineChart from './countries/CovidLineChart';
 
 const WorldCases = () => {

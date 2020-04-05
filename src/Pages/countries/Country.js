@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { getCountryCases, cleanGetCountryCases } from './redux/countActions';
 
 import { bgColors, borderColors } from '../colors';
-import { CountryPageTitle } from '../../components/CountryPageTitle';
+import { CountryPageTitle } from './CountryPageTitle';
 import CovidLineChart from './CovidLineChart';
 
 const Country = () => {
