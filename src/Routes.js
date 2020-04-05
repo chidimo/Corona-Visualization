@@ -12,18 +12,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-import WorldCases from './pages/WorldCases';
-import SidebarLeft from './pages/SidebarLeft';
-import SidebarRight from './pages/SidebarRight';
-import AllCountries from './pages/countries/AllCountries';
-import CountryCharts from './pages/countries/CountryCharts';
-
-// const WorldCases = lazy(() => import('./pages/WorldCases'));
-// const SidebarLeft = lazy(() => import('./pages/SidebarLeft'));
-// const SidebarRight = lazy(() => import('./pages/SidebarRight'));
-// const AllCountries = lazy(() => import('./pages/countries/AllCountries'));
-// const CountryCharts = lazy(() => import('./pages/countries/CountryCharts'));
-
+const WorldCases = lazy(() => import('./pages/WorldCases'));
+const SidebarLeft = lazy(() => import('./pages/SidebarLeft'));
+const SidebarRight = lazy(() => import('./pages/SidebarRight'));
+const AllCountries = lazy(() => import('./pages/countries/AllCountries'));
+const CountryCharts = lazy(() => import('./pages/countries/CountryCharts'));
 
 export const Routes = () => {
   return (
