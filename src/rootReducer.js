@@ -1,6 +1,6 @@
 import { loadingBarReducer } from 'react-redux-loading-bar';
 
-import { cont } from './pages/countries/redux/countReducer';
+import { cont } from './Pages/countries/redux/countReducer';
 
 export default (state = {}, action) => {
   if (action.type === 'LOGOUT_USER') {
