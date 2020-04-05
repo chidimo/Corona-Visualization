@@ -8,6 +8,22 @@ const mostRecentCase = {
   total_deaths: 0,
 };
 
+const firstCase = {
+  _id: '',
+  new_cases: 0,
+  new_deaths: 0,
+  total_cases: 0,
+  total_deaths: 0,
+};
+
+const firstDeath = {
+  _id: '',
+  new_cases: 0,
+  new_deaths: 0,
+  total_cases: 0,
+  total_deaths: 0,
+};
+
 const initialState = {
   countries: [],
   gettingCountries: true,
@@ -17,6 +33,12 @@ const initialState = {
 
   mostRecentCase,
   gettingMostRecentCase: true,
+
+  firstCase,
+  gettingFirstCase: true,
+
+  firstDeath,
+  gettingFirstDeath: true,
 
   gettingCasesByCountryName: true,
 
@@ -52,6 +74,29 @@ export const cont = (state = initialState, action) => {
     };
   case countAT.GETTING_MOST_RECENT_CASE:
     return { ...state, gettingMostRecentCase: action.true_or_false };
+
+  case countAT.CLEAN_FIRST_CASE:
+    return { ...state, firstCase };
+  case countAT.GET_FIRST_CASE:
+    return {
+      ...state,
+      firstCase:
+          action.result.length > 0 ? action.result[0] : state.firstCase,
+    };
+  case countAT.GETTING_FIRST_CASE:
+    return { ...state, gettingFirstCase: action.true_or_false };
+
+  case countAT.CLEAN_FIRST_DEATH:
+    return { ...state, firstDeath };
+  case countAT.GET_FIRST_DEATH:
+    return {
+      ...state,
+      firstDeath:
+          action.result.length > 0 ? action.result[0] : state.firstDeath,
+    };
+  case countAT.GETTING_FIRST_DEATH:
+    return { ...state, gettingFirstDeath: action.true_or_false };
+
   default:
     return state;
   }
