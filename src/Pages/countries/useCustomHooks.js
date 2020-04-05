@@ -55,10 +55,10 @@ export const useCreateDataset = (data, _id) => {
         total_cases,
         total_deaths,
       } = c;
-      newCases.current.push({ qut: new_cases, recordDate });
-      newDeaths.current.push({ qut: new_deaths, recordDate });
-      totalCases.current.push({ qut: total_cases, recordDate });
-      totalDeaths.current.push({ qut: total_deaths, recordDate });
+      newCases.current.push({ new_cases, recordDate });
+      newDeaths.current.push({ new_deaths, recordDate });
+      totalCases.current.push({ total_cases, recordDate });
+      totalDeaths.current.push({ total_deaths, recordDate });
     });
   }, [ activeCountryCases ]);
 
@@ -79,46 +79,58 @@ export const useCreateDataset = (data, _id) => {
     fill: true,
     lineTension: 0,
     pointRadius: 0,
+    pointHitRadius: 15,
     label: 'Total cases',
     borderColor: borderColors.warning,
     backgroundColor: bgColors.warning,
-    data: totalCases.current.map((e) => window.Number(e['qut'])),
+    data: totalCases.current.map((e) => window.Number(e['total_cases'])),
   };
 
   const newCasesData = {
     fill: true,
     lineTension: 0,
     pointRadius: 0,
+    pointHitRadius: 15,
     label: 'New cases',
     borderColor: borderColors.success,
     backgroundColor: bgColors.success,
-    data: newCases.current.map((e) => window.Number(e['qut'])),
+    data: newCases.current.map((e) => window.Number(e['new_cases'])),
   };
 
   const totalDeathsData = {
     fill: true,
     lineTension: 0,
     pointRadius: 0,
+    pointHitRadius: 15,
     label: 'Total deaths',
     borderColor: borderColors.danger,
     backgroundColor: bgColors.danger,
-    data: totalDeaths.current.map((e) => window.Number(e['qut'])),
+    data: totalDeaths.current.map((e) => window.Number(e['total_deaths'])),
   };
 
   const newDeathsData = {
     fill: true,
     lineTension: 0,
     pointRadius: 0,
+    pointHitRadius: 15,
     label: 'New deaths',
-    borderColor: borderColors.info,
-    backgroundColor: bgColors.info,
-    data: newDeaths.current.map((e) => window.Number(e['qut'])),
+    borderColor: borderColors.primary,
+    backgroundColor: bgColors.primary,
+    data: newDeaths.current.map((e) => window.Number(e['new_deaths'])),
   };
 
   return [
-    { newCasesData, newCasesXAxis },
-    { newDeathsData, newDeathsXAxis },
-    { totalCasesData, totalCasesXAxis },
-    { totalDeathsData, totalDeathsXAxis },
+    { newCasesData, newCasesXAxis, newCasesFC: newCasesData.borderColor },
+    { newDeathsData, newDeathsXAxis, newDeathsFC: newDeathsData.borderColor },
+    {
+      totalCasesData,
+      totalCasesXAxis,
+      totalCasesFC: totalCasesData.borderColor,
+    },
+    {
+      totalDeathsData,
+      totalDeathsXAxis,
+      totalDeathsFC: totalDeathsData.borderColor,
+    },
   ];
 };

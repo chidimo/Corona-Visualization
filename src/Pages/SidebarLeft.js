@@ -1,15 +1,14 @@
 import React, { useEffect, useReducer } from 'react';
-import { Link } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-import { getCountries } from './countries/redux/countActions';
-
+import { SideNavLinks } from './SideNavLinks';
 import { BorderSpinner } from './Spinners';
 import { filterCountRed } from './reducers';
+import { getCountries } from './countries/redux/countActions';
 
 const SidebarLeft = () => {
   const dispatch = useDispatch();
@@ -64,16 +63,19 @@ const SidebarLeft = () => {
           {info.displayCountries.map((c) => {
             const { _id, name, short_name } = c;
             return (
-              <div className="nav-item" key={_id}>
+              <div className="nav-item card mb-2" key={_id}>
                 <div className="flag-container">
                   <img
-                    src={`https://www.countryflags.io/${short_name}/shiny/24.png`}
+                    src={`https://www.countryflags.io/${short_name}/shiny/32.png`}
                     alt="Flag"
                   />
                 </div>
-                <Link state={{ name, short_name }} to={`countries/${_id}`}>
+                <SideNavLinks
+                  state={{ name, short_name }}
+                  to={`countries/${_id}`}
+                >
                   {name}
-                </Link>
+                </SideNavLinks>
               </div>
             );
           })}

@@ -2,25 +2,25 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 
-import { BorderSpinner } from '../Spinners';
+import { BorderSpinner } from './Spinners';
 
-import LineChart from '../../graph/LineChart';
+import LineChart from '../graph/LineChart';
 
 const LineChartWrapper = (props) => {
   const {
     xAxis,
     spinner,
     dataSets,
+    fontColor,
     graphLabel,
     yAxisLabel,
     legendLabel,
-    borderColor,
     tooltipLabel,
     legendContainerId,
   } = props;
 
   return (
-    <Container className="graph-grid-child mt-5">
+    <Container className="graph-grid-child mt-4">
       <Container className="chart-header">
         <div className="chart-title">
           <h3>{graphLabel}</h3>
@@ -39,8 +39,8 @@ const LineChartWrapper = (props) => {
             <LineChart
               xAxisScale={xAxis}
               dataSets={dataSets}
+              fontColor={fontColor}
               yAxisLabel={yAxisLabel}
-              borderColor={borderColor}
               legendLabel={legendLabel}
               tooltipLabel={tooltipLabel}
               legendContainerId={legendContainerId}
@@ -58,7 +58,7 @@ LineChartWrapper.propTypes = {
   dataSets: PropTypes.array,
   yAxisLabel: PropTypes.string,
   graphLabel: PropTypes.string,
-  borderColor: PropTypes.string,
+  fontColor: PropTypes.string,
   legendLabel: PropTypes.string,
   tooltipLabel: PropTypes.string,
   legendContainerId: PropTypes.string,

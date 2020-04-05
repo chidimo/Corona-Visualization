@@ -3,6 +3,7 @@
 .top-navigation {
   top: 0;
   min-height: 4rem;
+  // background-color: #c10a36 !important;
 }
 
 .top-level-container {
@@ -44,6 +45,10 @@
     .nav-item a {
       padding-left: 5px;
     }
+    .nav-item a.active-side-nav {
+      font-weight: bold;
+      padding-left: 5px;
+    }
 
     .nav-item a:hover {
       text-decoration: none;
@@ -67,7 +72,7 @@
     border-left: 1px solid #ececec;
 
     .right-sidebar-child {
-      padding: 0;
+      padding: 0 10px;
       overflow: auto;
       align-items: flex-start;
       max-height: calc(100vh - 6rem);

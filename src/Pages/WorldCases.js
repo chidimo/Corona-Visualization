@@ -4,10 +4,8 @@ import Container from 'react-bootstrap/Container';
 
 import { getCountryByName } from './countries/redux/countActions';
 
-import { borderColors } from './colors';
-
 import { DatePicker } from './DatePicker';
-import LineChartWrapper from './countries/LineChartWrapper';
+import LineChartWrapper from './LineChartWrapper';
 import { CountryPageTitle } from './countries/CountryPageTitle';
 import { useDatePicker, useCreateDataset } from './countries/useCustomHooks';
 
@@ -24,10 +22,10 @@ const WorldCases = () => {
   }, [ dispatch ]);
 
   const [
-    { newCasesData, newCasesXAxis },
-    { newDeathsData, newDeathsXAxis },
-    { totalCasesData, totalCasesXAxis },
-    { totalDeathsData, totalDeathsXAxis },
+    { newCasesData, newCasesXAxis, newCasesFC },
+    { newDeathsData, newDeathsXAxis, newDeathsFC },
+    { totalCasesData, totalCasesXAxis, totalCasesFC },
+    { totalDeathsData, totalDeathsXAxis, totalDeathsFC },
   ] = useCreateDataset(data, activeCountry._id);
 
   return (
@@ -36,12 +34,12 @@ const WorldCases = () => {
       <DatePicker data={data} dispatch={dataDispatch} />
 
       <LineChartWrapper
-        xAxis={totalCasesXAxis}
-        dataSets={[ totalCasesData ]}
         tooltipLabel={'Cases'}
+        xAxis={totalCasesXAxis}
+        fontColor={totalCasesFC}
         graphLabel={'Total cases'}
+        dataSets={[ totalCasesData ]}
         legendContainerId={'total-cases'}
-        borderColor={borderColors.warning}
         spinner={gettingActiveCountryCases}
         legendLabel={'Total cases of Covid19'}
         yAxisLabel={'Total number of Covid19 cases'}
@@ -49,22 +47,22 @@ const WorldCases = () => {
 
       <LineChartWrapper
         xAxis={newCasesXAxis}
-        dataSets={[ newCasesData ]}
+        fontColor={newCasesFC}
         tooltipLabel={'Cases'}
         graphLabel={'New cases'}
+        dataSets={[ newCasesData ]}
         legendContainerId={'new-cases'}
-        borderColor={borderColors.success}
         spinner={gettingActiveCountryCases}
         legendLabel={'New cases of Covid19'}
         yAxisLabel={'Number of new Covid19 cases'}
       />
 
       <LineChartWrapper
-        xAxis={totalDeathsXAxis}
-        dataSets={[ totalDeathsData ]}
         tooltipLabel={'Deaths'}
+        xAxis={totalDeathsXAxis}
+        fontColor={totalDeathsFC}
         graphLabel={'Total deaths'}
-        borderColor={borderColors.danger}
+        dataSets={[ totalDeathsData ]}
         legendContainerId={'total-deaths'}
         spinner={gettingActiveCountryCases}
         legendLabel={'Total deaths from Covid19'}
@@ -72,11 +70,11 @@ const WorldCases = () => {
       />
 
       <LineChartWrapper
-        xAxis={newDeathsXAxis}
-        dataSets={[ newDeathsData ]}
         tooltipLabel={'Deaths'}
+        xAxis={newDeathsXAxis}
+        fontColor={newDeathsFC}
         graphLabel={'New deaths'}
-        borderColor={borderColors.info}
+        dataSets={[ newDeathsData ]}
         legendContainerId={'new-deaths'}
         spinner={gettingActiveCountryCases}
         legendLabel={'New deaths from Covid19'}

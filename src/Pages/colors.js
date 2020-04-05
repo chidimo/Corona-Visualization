@@ -1,15 +1,13 @@
 export const bgColors = {
-  info: '#d1ebf1',
-  primary: '#cce5ff',
-  success: '#d4edda',
-  danger: '#f8d6da',
-  warning: '#fff3cd',
+  primary: '#599699',
+  success: '#f1a54d',
+  warning: '#91d302',
+  danger: '#0266cb',
 };
 
 export const borderColors = {
-  primary: '#004085',
-  success: '#155724',
-  info: '#0c5460',
-  warning: '#856404',
-  danger: '#721c24',
+  primary: '#070707',
+  success: '#1e3b9e',
+  warning: '#4b5579',
+  danger: '#b7000d',
 };

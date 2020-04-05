@@ -11,7 +11,7 @@ import {
 } from './redux/countActions';
 
 import { DatePicker } from '../DatePicker';
-import LineChartWrapper from './LineChartWrapper';
+import LineChartWrapper from '../LineChartWrapper';
 import { useDatePicker } from './useCustomHooks';
 import { CountryPageTitle } from './CountryPageTitle';
 

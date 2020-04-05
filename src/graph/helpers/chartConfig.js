@@ -3,7 +3,7 @@ export const chartConfig = (
   xAxisLabel,
   yAxisLabel,
   tooltipLabel,
-  borderColor,
+  fontColor,
   bgColor,
   titleFontColor,
   ttColor
@@ -51,6 +51,8 @@ export const chartConfig = (
           let innerHtml = '';
           bodyLines.forEach(function (body, i) {
             const num = body[i].split(':')[1];
+            const title = tooltipModel.title[0];
+            innerHtml += '<div>' + title + '</div>';
             innerHtml += '<div id="value">' + num + '</div>';
             innerHtml += '<div>' + tooltipLabel + '</div>';
           });
@@ -109,11 +111,11 @@ export const chartConfig = (
       xAxes: [
         {
           ticks: {
-            fontSize: 12,
+            fontColor,
+            fontSize: 14,
             display: true,
-            maxTicksLimit: 5,
             maxRotation: 0,
-            fontColor: borderColor,
+            maxTicksLimit: 5,
             callback: (label, index, labels) => label.split('-'),
           },
           gridLines: {
@@ -131,6 +133,8 @@ export const chartConfig = (
           display: true,
           ticks: {
             min: 0,
+            fontColor,
+            fontSize: 14,
             // display: true,
             maxTicksLimit: 5,
             beginAtZero: true,

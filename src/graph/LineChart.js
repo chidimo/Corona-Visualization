@@ -10,10 +10,10 @@ const LineChart = (props) => {
   let chartReference = useRef();
   let {
     dataSets,
+    fontColor,
     xAxisScale,
     yAxisLabel,
     legendLabel,
-    borderColor,
     tooltipLabel,
     legendContainerId,
   } = props;
@@ -45,13 +45,13 @@ const LineChart = (props) => {
           'Number of Covid19 cases',
           yAxisLabel,
           tooltipLabel,
-          borderColor,
+          fontColor,
           '#FAFCFE',
           '#111111',
-          borderColor
+          fontColor
         ),
         legendCallback: chartCallbacks.fillSquareLegend(
-          [ borderColor ],
+          [ fontColor ],
           [ legendLabel ]
         ),
       }}
@@ -63,7 +63,7 @@ LineChart.propTypes = {
   dataSets: PropTypes.array,
   xAxisScale: PropTypes.array,
   yAxisLabel: PropTypes.string,
-  borderColor: PropTypes.string,
+  fontColor: PropTypes.string,
   legendLabel: PropTypes.string,
   tooltipLabel: PropTypes.string,
   legendContainerId: PropTypes.string,
