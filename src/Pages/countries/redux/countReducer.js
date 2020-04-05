@@ -3,8 +3,8 @@ import { countAT } from './countAT';
 const mostRecentCase = {
   _id: '',
   new_cases: 0,
-  total_cases: 0,
   new_deaths: 0,
+  total_cases: 0,
   total_deaths: 0,
 };
 
@@ -12,13 +12,15 @@ const initialState = {
   countries: [],
   gettingCountries: true,
 
-  countryCases: [],
-  gettingCountryCases: true,
+  activeCountryCases: [],
+  gettingActiveCountryCases: true,
 
   mostRecentCase,
   gettingMostRecentCase: true,
 
   gettingCasesByCountryName: true,
+
+  allCountriesCases: [],
 };
 
 export const cont = (state = initialState, action) => {
@@ -28,17 +30,17 @@ export const cont = (state = initialState, action) => {
   case countAT.GETTING_COUNTRIES:
     return { ...state, gettingCountries: action.true_or_false };
 
-  case countAT.GET_COUNTRY_CASES:
-    return { ...state, countryCases: action.cases };
-  case countAT.GETTING_COUNTRY_CASES:
-    return { ...state, gettingCountryCases: action.true_or_false };
-  case countAT.CLEAN_GET_COUNTRY_CASES:
-    return { ...state, countryCases: [] };
+  case countAT.GET_ACTIVE_COUNTRY_CASES:
+    return { ...state, activeCountryCases: action.cases };
+  case countAT.GETTING_ACTIVE_COUNTRY_CASES:
+    return { ...state, gettingActiveCountryCases: action.true_or_false };
+  case countAT.CLEAN_ACTIVE_COUNTRY_CASES:
+    return { ...state, activeCountryCases: [] };
 
   case countAT.GETTING_CASES_BY_COUNTRY_NAME:
     return { ...state, gettingCasesByCountryName: action.true_or_false };
   case countAT.GET_CASES_BY_COUNTRY_NAME:
-    return { ...state, countryCases: action.cases };
+    return { ...state, activeCountryCases: action.cases };
 
   case countAT.CLEAN_MOST_RECENT_CASE:
     return { ...state, mostRecentCase };

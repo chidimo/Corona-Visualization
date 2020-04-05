@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 
 import { bgColors, borderColors } from '../colors';
 
-import { getCountryCases, cleanGetCountryCases } from './redux/countActions';
+import { getActiveCountryCases, cleanActiveCountryCases } from './redux/countActions';
 
 import { DatePicker } from '../DatePicker';
 import CovidLineChart from './CovidLineChart';
@@ -19,7 +19,7 @@ const Country = () => {
     state: { name, short_name },
   } = useLocation();
 
-  const { countryCases, gettingCountryCases } = useSelector(
+  const { activeCountryCases, gettingActiveCountryCases } = useSelector(
     (state) => state.cont
   );
 
@@ -32,7 +32,7 @@ const Country = () => {
 
   // clear state
   useEffect(() => {
-    getCountryCases({ _id, fromDate: data.fromDate, toDate: data.toDate })(
+    getActiveCountryCases({ _id, fromDate: data.fromDate, toDate: data.toDate })(
       dispatch
     );
     return () => {
@@ -40,12 +40,12 @@ const Country = () => {
       newDeaths.current = [];
       totalCases.current = [];
       totalDeaths.current = [];
-      cleanGetCountryCases()(dispatch);
+      cleanActiveCountryCases()(dispatch);
     };
   }, [ _id, data, dispatch ]);
 
   useEffect(() => {
-    countryCases.forEach((c) => {
+    activeCountryCases.forEach((c) => {
       const {
         new_cases,
         new_deaths,
@@ -58,7 +58,7 @@ const Country = () => {
       totalCases.current.push({ qut: total_cases, recordDate });
       totalDeaths.current.push({ qut: total_deaths, recordDate });
     });
-  }, [ countryCases ]);
+  }, [ activeCountryCases ]);
 
   return (
     <Container className="country-graph-page">
@@ -72,7 +72,7 @@ const Country = () => {
         legendContainerId={'total-cases'}
         borderColor={borderColors.warning}
         backgroundColor={bgColors.warning}
-        spinner={gettingCountryCases}
+        spinner={gettingActiveCountryCases}
         legendLabel={'Total cases of Covid19'}
         yAxisLabel={'Total number of Covid19 cases'}
       />
@@ -84,7 +84,7 @@ const Country = () => {
         legendContainerId={'new-cases'}
         borderColor={borderColors.success}
         backgroundColor={bgColors.success}
-        spinner={gettingCountryCases}
+        spinner={gettingActiveCountryCases}
         legendLabel={'New cases of Covid19'}
         yAxisLabel={'Number of new Covid19 cases'}
       />
@@ -96,7 +96,7 @@ const Country = () => {
         borderColor={borderColors.danger}
         backgroundColor={bgColors.danger}
         legendContainerId={'total-deaths'}
-        spinner={gettingCountryCases}
+        spinner={gettingActiveCountryCases}
         legendLabel={'Total deaths from Covid19'}
         yAxisLabel={'Total number of Covid19 deaths'}
       />
@@ -108,7 +108,7 @@ const Country = () => {
         borderColor={borderColors.info}
         backgroundColor={bgColors.info}
         legendContainerId={'new-deaths'}
-        spinner={gettingCountryCases}
+        spinner={gettingActiveCountryCases}
         legendLabel={'New deaths from Covid19'}
         yAxisLabel={'Number of new Covid19 deaths'}
       />

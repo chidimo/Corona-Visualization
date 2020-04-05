@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 import {
   getCasesByCountryName,
-  cleanGetCountryCases,
+  cleanActiveCountryCases,
 } from './countries/redux/countActions';
 
 import { bgColors, borderColors } from './colors';
@@ -19,7 +19,7 @@ import { useDatePicker } from './countries/useCustomHooks';
 const WorldCases = () => {
   const dispatch = useDispatch();
 
-  const { countryCases, gettingCasesByCountryName } = useSelector(
+  const { activeCountryCases, gettingCasesByCountryName } = useSelector(
     (state) => state.cont
   );
 
@@ -41,12 +41,12 @@ const WorldCases = () => {
       newDeaths.current = [];
       totalCases.current = [];
       totalDeaths.current = [];
-      cleanGetCountryCases()(dispatch);
+      cleanActiveCountryCases()(dispatch);
     };
   }, [ data, dispatch ]);
 
   useEffect(() => {
-    countryCases.forEach((c) => {
+    activeCountryCases.forEach((c) => {
       const {
         new_cases,
         new_deaths,
@@ -59,7 +59,7 @@ const WorldCases = () => {
       totalCases.current.push({ qut: total_cases, recordDate });
       totalDeaths.current.push({ qut: total_deaths, recordDate });
     });
-  }, [ countryCases ]);
+  }, [ activeCountryCases ]);
 
   return (
     <Container className="country-graph-page">

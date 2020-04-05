@@ -24,7 +24,7 @@ export const getMostRecentCase = (key, urlType) => async (dispatch) => {
 };
 
 export const cleanMostRecentCase = () => async (dispatch) => {
-  dispatch({ type: countAT.CLEAN_GET_COUNTRY_CASES });
+  dispatch({ type: countAT.CLEAN_ACTIVE_COUNTRY_CASES });
 };
 
 export const getCountries = () => async (dispatch) => {
@@ -44,27 +44,31 @@ export const getCountries = () => async (dispatch) => {
   }
 };
 
-export const getCountryCases = (info) => async (dispatch) => {
+export const getActiveCountryCases = (info) => async (dispatch) => {
   const { _id, fromDate, toDate } = info;
-  dispatch({ type: countAT.GETTING_COUNTRY_CASES, true_or_false: true });
+  dispatch({ type: countAT.GETTING_ACTIVE_COUNTRY_CASES, true_or_false: true });
   try {
     const { data } = await axios.get(
       `/cases?country=${_id}&fromDate=${fromDate}&toDate=${toDate}&skip=0&limit=100`
     );
     const { metadata, results } = data;
-    dispatch({ type: countAT.GET_COUNTRY_CASES, cases: results, metadata });
-    dispatch({ type: countAT.GETTING_COUNTRY_CASES, true_or_false: false });
+    dispatch({
+      type: countAT.GET_ACTIVE_COUNTRY_CASES,
+      cases: results,
+      metadata,
+    });
+    dispatch({ type: countAT.GETTING_ACTIVE_COUNTRY_CASES, true_or_false: false });
     return { success: true };
   } catch (e) {
     const { response } = e;
     const data = response && response.data;
-    dispatch({ type: countAT.GETTING_COUNTRY_CASES, true_or_false: false });
+    dispatch({ type: countAT.GETTING_ACTIVE_COUNTRY_CASES, true_or_false: false });
     return data;
   }
 };
 
-export const cleanGetCountryCases = () => async (dispatch) => {
-  dispatch({ type: countAT.CLEAN_GET_COUNTRY_CASES });
+export const cleanActiveCountryCases = () => async (dispatch) => {
+  dispatch({ type: countAT.CLEAN_ACTIVE_COUNTRY_CASES });
 };
 
 export const getCasesByCountryName = (info) => async (dispatch) => {
