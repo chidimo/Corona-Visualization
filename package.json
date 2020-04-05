@@ -1,5 +1,5 @@
 {
-  "name": "corona-visuals",
+  "name": "corona-virus-charts",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://chidimo.github.io/Corona-Visualization",
@@ -19,7 +19,6 @@
     "chartjs": "^0.3.24",
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
-    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.2",
     "react": "^16.13.1",

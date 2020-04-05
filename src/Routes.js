@@ -31,13 +31,7 @@ export const Routes = () => {
             </Col>
 
             <Col sm="8" className="middle-column">
-              <Router
-                basepath={
-                  process.env.NODE_ENV === 'production'
-                    ? process.env.PUBLIC_URL
-                    : '/'
-                }
-              >
+              <Router>
                 <WorldCases path="/" />
                 <AllCountries path="countries" />
                 <CountryCharts path="countries/:_id" />
