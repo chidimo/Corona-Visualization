@@ -10,7 +10,7 @@ import {
 import { bgColors, borderColors } from './colors';
 
 import { CountryPageTitle } from './countries/CountryPageTitle';
-import CovidLineChart from './countries/CovidLineChart';
+import LineChartWrapper from './countries/LineChartWrapper';
 
 import { DatePicker } from './DatePicker';
 
@@ -61,53 +61,93 @@ const WorldCases = () => {
     });
   }, [ activeCountryCases ]);
 
+  const totalCasesData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'Total cases',
+    borderColor: borderColors.warning,
+    backgroundColor: bgColors.warning,
+    data: totalCases.current.map((e) => window.Number(e['qut'])),
+  };
+
+  const newCasesData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'New cases',
+    borderColor: borderColors.success,
+    backgroundColor: bgColors.success,
+    data: newCases.current.map((e) => window.Number(e['qut'])),
+  };
+
+  const totalDeathsData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'Total deaths',
+    borderColor: borderColors.danger,
+    backgroundColor: bgColors.danger,
+    data: totalDeaths.current.map((e) => window.Number(e['qut'])),
+  };
+
+  const newDeathsData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'New deaths',
+    borderColor: borderColors.info,
+    backgroundColor: bgColors.info,
+    data: newDeaths.current.map((e) => window.Number(e['qut'])),
+  };
+
   return (
     <Container className="country-graph-page">
       <CountryPageTitle name={'World'} short_name={''} />
       <DatePicker data={data} dispatch={dataDispatch} />
 
-      <CovidLineChart
+      <LineChartWrapper
+        dataSets={[ totalCasesData ]}
         tooltipLabel={'Cases'}
         graphLabel={'Total cases'}
         dataPoints={totalCases.current}
         legendContainerId={'total-cases'}
         borderColor={borderColors.warning}
-        backgroundColor={bgColors.warning}
         spinner={gettingCasesByCountryName}
         legendLabel={'Total cases of Covid19'}
         yAxisLabel={'Total number of Covid19 cases'}
       />
 
-      <CovidLineChart
+      <LineChartWrapper
+        dataSets={[ newCasesData ]}
         tooltipLabel={'Cases'}
         graphLabel={'New cases'}
         dataPoints={newCases.current}
         legendContainerId={'new-cases'}
         borderColor={borderColors.success}
-        backgroundColor={bgColors.success}
         spinner={gettingCasesByCountryName}
         legendLabel={'New cases of Covid19'}
         yAxisLabel={'Number of new Covid19 cases'}
       />
 
-      <CovidLineChart
+      <LineChartWrapper
+        dataSets={[ totalDeathsData ]}
         tooltipLabel={'Deaths'}
         graphLabel={'Total deaths'}
         dataPoints={totalDeaths.current}
         borderColor={borderColors.danger}
-        backgroundColor={bgColors.danger}
         legendContainerId={'total-deaths'}
         spinner={gettingCasesByCountryName}
         legendLabel={'Total deaths from Covid19'}
         yAxisLabel={'Total number of Covid19 deaths'}
       />
 
-      <CovidLineChart
+      <LineChartWrapper
+        dataSets={[ newDeathsData ]}
         tooltipLabel={'Deaths'}
         graphLabel={'New deaths'}
         dataPoints={newDeaths.current}
         borderColor={borderColors.info}
-        backgroundColor={bgColors.info}
         legendContainerId={'new-deaths'}
         spinner={gettingCasesByCountryName}
         legendLabel={'New deaths from Covid19'}

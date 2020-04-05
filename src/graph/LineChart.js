@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Chart, Line } from 'react-chartjs-2';
 
-import { xScale } from './helpers/xScale';
 import plugins from './helpers/plugins';
 import chartCallbacks from './helpers/chartCallbacks';
 import { chartConfig } from './helpers/chartConfig';
@@ -10,17 +9,14 @@ import { chartConfig } from './helpers/chartConfig';
 const LineChart = (props) => {
   let chartReference = useRef();
   let {
-    dataPoints,
+    dataSets,
+    xAxisScale,
     yAxisLabel,
-    graphLabel,
     legendLabel,
     borderColor,
     tooltipLabel,
-    backgroundColor,
     legendContainerId,
   } = props;
-
-  const yAxesData = dataPoints.map((e) => window.Number(e['qut']));
 
   useEffect(() => {
     const legendContainer = document.getElementById(legendContainerId);
@@ -40,18 +36,8 @@ const LineChart = (props) => {
       height={75}
       ref={(reference) => (chartReference.current = reference)}
       data={{
-        labels: xScale(dataPoints),
-        datasets: [
-          {
-            fill: true,
-            lineTension: 0,
-            pointRadius: 0,
-            data: yAxesData,
-            label: graphLabel,
-            borderColor,
-            backgroundColor,
-          },
-        ],
+        labels: xAxisScale,
+        datasets: dataSets,
       }}
       options={{
         // maintainAspectRatio: false,
@@ -74,13 +60,12 @@ const LineChart = (props) => {
 };
 
 LineChart.propTypes = {
-  dataPoints: PropTypes.array,
+  dataSets: PropTypes.array,
+  xAxisScale: PropTypes.array,
   yAxisLabel: PropTypes.string,
   borderColor: PropTypes.string,
-  graphLabel: PropTypes.string,
   legendLabel: PropTypes.string,
   tooltipLabel: PropTypes.string,
-  backgroundColor: PropTypes.string,
   legendContainerId: PropTypes.string,
 };
 

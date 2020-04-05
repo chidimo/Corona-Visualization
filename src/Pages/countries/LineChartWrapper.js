@@ -5,17 +5,18 @@ import PropTypes from 'prop-types';
 import { BorderSpinner } from '../Spinners';
 
 import LineChart from '../../graph/LineChart';
+import { localeFromTSMonthShort } from '../../dateUtils';
 
-const CovidLineChart = (props) => {
+const LineChartWrapper = (props) => {
   const {
     spinner,
+    dataSets,
     graphLabel,
     dataPoints,
     yAxisLabel,
     legendLabel,
     borderColor,
     tooltipLabel,
-    backgroundColor,
     legendContainerId,
   } = props;
 
@@ -37,14 +38,15 @@ const CovidLineChart = (props) => {
           </div>
           <Container>
             <LineChart
-              dataPoints={dataPoints}
+              dataSets={dataSets}
               yAxisLabel={yAxisLabel}
-              graphLabel={graphLabel}
               borderColor={borderColor}
               legendLabel={legendLabel}
               tooltipLabel={tooltipLabel}
-              backgroundColor={backgroundColor}
               legendContainerId={legendContainerId}
+              xAxisScale={dataPoints.map((e) =>
+                localeFromTSMonthShort(e.recordDate)
+              )}
             />
           </Container>
         </Container>
@@ -53,16 +55,16 @@ const CovidLineChart = (props) => {
   );
 };
 
-CovidLineChart.propTypes = {
+LineChartWrapper.propTypes = {
   spinner: PropTypes.bool,
-  graphLabel: PropTypes.string,
-  borderColor: PropTypes.string,
+  dataSets: PropTypes.array,
   dataPoints: PropTypes.array,
   yAxisLabel: PropTypes.string,
+  graphLabel: PropTypes.string,
+  borderColor: PropTypes.string,
   legendLabel: PropTypes.string,
   tooltipLabel: PropTypes.string,
-  backgroundColor: PropTypes.string,
   legendContainerId: PropTypes.string,
 };
 
-export default CovidLineChart;
+export default LineChartWrapper;
