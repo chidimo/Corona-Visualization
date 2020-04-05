@@ -12,6 +12,10 @@ import { bgColors, borderColors } from './colors';
 import { CountryPageTitle } from './countries/CountryPageTitle';
 import CovidLineChart from './countries/CovidLineChart';
 
+import { DatePicker } from './DatePicker';
+
+import { useDatePicker } from './countries/useCustomHooks';
+
 const WorldCases = () => {
   const dispatch = useDispatch();
 
@@ -19,13 +23,19 @@ const WorldCases = () => {
     (state) => state.cont
   );
 
+  const [ data, dataDispatch ] = useDatePicker();
+
   const newCases = useRef([]);
   const newDeaths = useRef([]);
   const totalCases = useRef([]);
   const totalDeaths = useRef([]);
 
   useEffect(() => {
-    getCasesByCountryName('World')(dispatch);
+    getCasesByCountryName({
+      countryName: 'World',
+      fromDate: data.fromDate,
+      toDate: data.toDate,
+    })(dispatch);
     return () => {
       newCases.current = [];
       newDeaths.current = [];
@@ -33,7 +43,7 @@ const WorldCases = () => {
       totalDeaths.current = [];
       cleanGetCountryCases()(dispatch);
     };
-  }, [ dispatch ]);
+  }, [ data, dispatch ]);
 
   useEffect(() => {
     countryCases.forEach((c) => {
@@ -54,6 +64,7 @@ const WorldCases = () => {
   return (
     <Container className="country-graph-page">
       <CountryPageTitle name={'World'} short_name={''} />
+      <DatePicker data={data} dispatch={dataDispatch} />
 
       <CovidLineChart
         tooltipLabel={'Cases'}

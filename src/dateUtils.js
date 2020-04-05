@@ -139,6 +139,13 @@ export const timePlusNHoursISO = (date, n) => {
 };
 
 export const ISOStringWithDash = (timeStamp) => {
+  // "2020-03-05"}
   if (!timeStamp) return 'Unknown date';
   return new Date(timeStamp).toISOString().split('T')[0].replace(/\//g, '-');
+};
+
+export const ISOStringWithDashFull = (timeStamp) => {
+  // "2020-03-05"}
+  if (!timeStamp) return 'Unknown date';
+  return new Date(timeStamp).toISOString();
 };

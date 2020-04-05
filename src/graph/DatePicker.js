@@ -19,13 +19,13 @@ const DatePicker = (props) => {
   return (
     <DateRangePicker
       endDateId="toDate"
-      startDateId="fromDate"
+      fromDateId="fromDate"
       endDate={dataObj.toDate}
-      startDate={dataObj.fromDate}
+      fromDate={dataObj.fromDate}
       displayFormat={() => 'MMM DD, YYYY'}
-      onDatesChange={({ startDate, endDate }) => {
+      onDatesChange={({ fromDate, endDate }) => {
         dispatcher({ type: 'SET_TO_DATE', toDate: endDate });
-        dispatcher({ type: 'SET_FROM_DATE', fromDate: startDate });
+        dispatcher({ type: 'SET_FROM_DATE', fromDate: fromDate });
       }}
       focusedInput={dataObj.focusedInput}
       onFocusChange={(focusedInput) => {

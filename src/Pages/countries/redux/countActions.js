@@ -19,10 +19,13 @@ export const getCountries = () => async (dispatch) => {
   }
 };
 
-export const getCountryCases = (_id) => async (dispatch) => {
+export const getCountryCases = (info) => async (dispatch) => {
+  const { _id, fromDate, toDate } = info;
   dispatch({ type: countAT.GETTING_COUNTRY_CASES, true_or_false: true });
   try {
-    const { data } = await axios.get(`/cases?country=${_id}&skip=0&limit=100`);
+    const { data } = await axios.get(
+      `/cases?country=${_id}&fromDate=${fromDate}&toDate=${toDate}&skip=0&limit=100`
+    );
     const { metadata, results } = data;
     dispatch({ type: countAT.GET_COUNTRY_CASES, cases: results, metadata });
     dispatch({ type: countAT.GETTING_COUNTRY_CASES, true_or_false: false });
@@ -39,14 +42,15 @@ export const cleanGetCountryCases = () => async (dispatch) => {
   dispatch({ type: countAT.CLEAN_GET_COUNTRY_CASES });
 };
 
-export const getCasesByCountryName = (name) => async (dispatch) => {
+export const getCasesByCountryName = (info) => async (dispatch) => {
+  const { countryName, fromDate, toDate } = info;
   dispatch({
     type: countAT.GETTING_CASES_BY_COUNTRY_NAME,
     true_or_false: true,
   });
   try {
     const { data } = await axios.get(
-      `/cases?countryName=${name}&skip=0&limit=100`
+      `/cases?countryName=${countryName}&fromDate=${fromDate}&toDate=${toDate}&skip=0&limit=100`
     );
     const { metadata, results } = data;
     dispatch({

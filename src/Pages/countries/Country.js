@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation } from '@reach/router';
 import Container from 'react-bootstrap/Container';
 
+import { bgColors, borderColors } from '../colors';
+
 import { getCountryCases, cleanGetCountryCases } from './redux/countActions';
 
-import { bgColors, borderColors } from '../colors';
-import { CountryPageTitle } from './CountryPageTitle';
+import { DatePicker } from '../DatePicker';
 import CovidLineChart from './CovidLineChart';
+import { useDatePicker } from './useCustomHooks';
+import { CountryPageTitle } from './CountryPageTitle';
 
 const Country = () => {
   const dispatch = useDispatch();
@@ -20,6 +23,8 @@ const Country = () => {
     (state) => state.cont
   );
 
+  const [ data, dataDispatch ] = useDatePicker();
+
   const newCases = useRef([]);
   const newDeaths = useRef([]);
   const totalCases = useRef([]);
@@ -27,7 +32,9 @@ const Country = () => {
 
   // clear state
   useEffect(() => {
-    getCountryCases(_id)(dispatch);
+    getCountryCases({ _id, fromDate: data.fromDate, toDate: data.toDate })(
+      dispatch
+    );
     return () => {
       newCases.current = [];
       newDeaths.current = [];
@@ -35,7 +42,7 @@ const Country = () => {
       totalDeaths.current = [];
       cleanGetCountryCases()(dispatch);
     };
-  }, [ _id, dispatch ]);
+  }, [ _id, data, dispatch ]);
 
   useEffect(() => {
     countryCases.forEach((c) => {
@@ -56,6 +63,7 @@ const Country = () => {
   return (
     <Container className="country-graph-page">
       <CountryPageTitle name={name} short_name={short_name} />
+      <DatePicker data={data} dispatch={dataDispatch} />
 
       <CovidLineChart
         tooltipLabel={'Cases'}

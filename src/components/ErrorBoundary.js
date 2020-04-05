@@ -31,7 +31,7 @@ class ErrorBoundary extends Component {
     const { errRetries, errRetryMax } = this.state;
     if (errRetries < errRetryMax) {
       localStorage.setItem('errRetries', errRetries + 1);
-      window.location.reload();
+      // window.location.reload();
     } else {
       Sentry.withScope((scope) => {
         scope.setExtras(info);
