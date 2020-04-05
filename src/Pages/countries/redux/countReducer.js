@@ -25,6 +25,9 @@ const firstDeath = {
 };
 
 const initialState = {
+  activeCountry: { _id: '' },
+  gettingCountry: true,
+
   countries: [],
   gettingCountries: true,
 
@@ -43,10 +46,20 @@ const initialState = {
   gettingCasesByCountryName: true,
 
   allCountriesCases: [],
+  gettingCountryInView: true,
 };
 
 export const cont = (state = initialState, action) => {
   switch (action.type) {
+  case countAT.GET_COUNTRY_BY_NAME:
+    return {
+      ...state,
+      activeCountry:
+          action.country.length > 0 ? action.country[0] : state.activeCountry,
+    };
+  case countAT.GETTING_COUNTRY_BY_NAME:
+    return { ...state, gettingCountry: action.true_or_false };
+
   case countAT.GET_COUNTRIES:
     return { ...state, countries: action.countries };
   case countAT.GETTING_COUNTRIES:
@@ -97,6 +110,10 @@ export const cont = (state = initialState, action) => {
   case countAT.GETTING_FIRST_DEATH:
     return { ...state, gettingFirstDeath: action.true_or_false };
 
+  case countAT.GET_COUNTRY_IN_VIEW_CASE:
+    return { ...state, [action.name]: action.cases };
+  case countAT.GETTING_COUNTRY_IN_VIEW_CASE:
+    return { ...state, gettingCountryInView: action.true_or_false };
   default:
     return state;
   }

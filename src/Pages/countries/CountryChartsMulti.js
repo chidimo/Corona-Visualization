@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { bgColors, borderColors } from '../colors';
 
 import {
-  getActiveCountryCases,
+  getCountryInViewCases,
   cleanActiveCountryCases,
 } from './redux/countActions';
 
@@ -20,7 +20,7 @@ const CountryChartsMulti = (props) => {
 
   const { _id, name, short_name } = props;
 
-  const { activeCountryCases, gettingActiveCountryCases } = useSelector(
+  const { [name]: inViewCountryCases, gettingCountryInView } = useSelector(
     (state) => state.cont
   );
 
@@ -33,10 +33,11 @@ const CountryChartsMulti = (props) => {
 
   // clear state
   useEffect(() => {
-    getActiveCountryCases({
+    getCountryInViewCases({
       _id,
-      fromDate: data.fromDate,
+      name,
       toDate: data.toDate,
+      fromDate: data.fromDate,
     })(dispatch);
     return () => {
       newCases.current = [];
@@ -45,23 +46,65 @@ const CountryChartsMulti = (props) => {
       totalDeaths.current = [];
       cleanActiveCountryCases()(dispatch);
     };
-  }, [ _id, data, dispatch ]);
+  }, [ _id, name, data, dispatch ]);
 
   useEffect(() => {
-    activeCountryCases.forEach((c) => {
-      const {
-        new_cases,
-        new_deaths,
-        total_cases,
-        total_deaths,
-        recordDate,
-      } = c;
-      newCases.current.push({ qut: new_cases, recordDate });
-      newDeaths.current.push({ qut: new_deaths, recordDate });
-      totalCases.current.push({ qut: total_cases, recordDate });
-      totalDeaths.current.push({ qut: total_deaths, recordDate });
-    });
-  }, [ activeCountryCases ]);
+    if (inViewCountryCases?.length > 0) {
+      inViewCountryCases.forEach((c) => {
+        const {
+          recordDate,
+          new_cases,
+          new_deaths,
+          total_cases,
+          total_deaths,
+        } = c;
+        newCases.current.push({ qut: new_cases, recordDate });
+        newDeaths.current.push({ qut: new_deaths, recordDate });
+        totalCases.current.push({ qut: total_cases, recordDate });
+        totalDeaths.current.push({ qut: total_deaths, recordDate });
+      });
+    }
+  }, [ inViewCountryCases ]);
+
+  const totalCasesData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'Total cases',
+    borderColor: borderColors.warning,
+    backgroundColor: bgColors.warning,
+    data: totalCases.current.map((e) => window.Number(e['qut'])),
+  };
+
+  const newCasesData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'New cases',
+    borderColor: borderColors.success,
+    backgroundColor: bgColors.success,
+    data: newCases.current.map((e) => window.Number(e['qut'])),
+  };
+
+  const totalDeathsData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'Total deaths',
+    borderColor: borderColors.danger,
+    backgroundColor: bgColors.danger,
+    data: totalDeaths.current.map((e) => window.Number(e['qut'])),
+  };
+
+  const newDeathsData = {
+    fill: true,
+    lineTension: 0,
+    pointRadius: 0,
+    label: 'New deaths',
+    borderColor: borderColors.info,
+    backgroundColor: bgColors.info,
+    data: newDeaths.current.map((e) => window.Number(e['qut'])),
+  };
 
   return (
     <Container className="country-graph-page">
@@ -69,13 +112,18 @@ const CountryChartsMulti = (props) => {
       <DatePicker data={data} dispatch={dataDispatch} />
 
       <LineChartWrapper
+        dataSets={[
+          totalCasesData,
+          newCasesData,
+          totalDeathsData,
+          newDeathsData,
+        ]}
         tooltipLabel={'Cases'}
-        graphLabel={'Total cases'}
+        graphLabel={'Combined charts'}
         dataPoints={totalCases.current}
         legendContainerId={'total-cases'}
         borderColor={borderColors.warning}
-        backgroundColor={bgColors.warning}
-        spinner={gettingActiveCountryCases}
+        spinner={gettingCountryInView}
         legendLabel={'Total cases of Covid19'}
         yAxisLabel={'Total number of Covid19 cases'}
       />

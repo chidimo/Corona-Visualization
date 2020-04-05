@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 import { BorderSpinner } from '../Spinners';
 
 import LineChart from '../../graph/LineChart';
-import { localeFromTSMonthShort } from '../../dateUtils';
 
 const LineChartWrapper = (props) => {
   const {
+    xAxis,
     spinner,
     dataSets,
     graphLabel,
-    dataPoints,
     yAxisLabel,
     legendLabel,
     borderColor,
@@ -38,15 +37,13 @@ const LineChartWrapper = (props) => {
           </div>
           <Container>
             <LineChart
+              xAxisScale={xAxis}
               dataSets={dataSets}
               yAxisLabel={yAxisLabel}
               borderColor={borderColor}
               legendLabel={legendLabel}
               tooltipLabel={tooltipLabel}
               legendContainerId={legendContainerId}
-              xAxisScale={dataPoints.map((e) =>
-                localeFromTSMonthShort(e.recordDate)
-              )}
             />
           </Container>
         </Container>
@@ -56,9 +53,9 @@ const LineChartWrapper = (props) => {
 };
 
 LineChartWrapper.propTypes = {
+  xAxis: PropTypes.array,
   spinner: PropTypes.bool,
   dataSets: PropTypes.array,
-  dataPoints: PropTypes.array,
   yAxisLabel: PropTypes.string,
   graphLabel: PropTypes.string,
   borderColor: PropTypes.string,

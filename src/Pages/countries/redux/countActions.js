@@ -94,6 +94,22 @@ export const getCountries = () => async (dispatch) => {
   }
 };
 
+export const getCountryByName = (name) => async (dispatch) => {
+  dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: true });
+  try {
+    const { data } = await axios.get(`/country?name=${name}`);
+    const { country } = data;
+    dispatch({ type: countAT.GET_COUNTRY_BY_NAME, country });
+    dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
+    return { success: true };
+  } catch (e) {
+    const { response } = e;
+    const data = response && response.data;
+    dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
+    return data;
+  }
+};
+
 export const getActiveCountryCases = (info) => async (dispatch) => {
   const { _id, fromDate, toDate } = info;
   dispatch({ type: countAT.GETTING_ACTIVE_COUNTRY_CASES, true_or_false: true });
@@ -160,7 +176,7 @@ export const getCasesByCountryName = (info) => async (dispatch) => {
 };
 
 export const getCountryInViewCases = (info) => async (dispatch) => {
-  const { _id, fromDate, toDate } = info;
+  const { _id, name, fromDate, toDate } = info;
   dispatch({ type: countAT.GETTING_COUNTRY_IN_VIEW_CASE, true_or_false: true });
   try {
     const { data } = await axios.get(
@@ -168,9 +184,10 @@ export const getCountryInViewCases = (info) => async (dispatch) => {
     );
     const { metadata, results } = data;
     dispatch({
-      type: countAT.GET_COUNTRY_IN_VIEW_CASE,
-      cases: results,
+      name,
       metadata,
+      cases: results,
+      type: countAT.GET_COUNTRY_IN_VIEW_CASE,
     });
     dispatch({
       type: countAT.GETTING_COUNTRY_IN_VIEW_CASE,
