@@ -17,7 +17,7 @@ export const DatePicker = (props) => {
     <Container className="country-page-date-selector">
       <InputGroup className="">
         <InputGroup.Prepend expand="sm">
-          <InputGroup.Text>Select date range</InputGroup.Text>
+          <InputGroup.Text>Set date range</InputGroup.Text>
         </InputGroup.Prepend>
         <FormControl
           as={'input'}

@@ -2,6 +2,23 @@ import axios from 'axios';
 
 import { countAT } from './countAT';
 
+export const getMostRecentCase = (_id) => async (dispatch) => {
+  dispatch({ type: countAT.GETTING_MOST_RECENT_CASE, true_or_false: true });
+  try {
+    const { data } = await axios.get(`/most-recent-case?country=${_id}`);
+    const { result } = data;
+
+    dispatch({ type: countAT.GET_MOST_RECENT_CASE, result });
+    dispatch({ type: countAT.GETTING_MOST_RECENT_CASE, true_or_false: false });
+    return { success: true };
+  } catch (e) {
+    const { response } = e;
+    const data = response && response.data;
+    dispatch({ type: countAT.GETTING_MOST_RECENT_CASE, true_or_false: false });
+    return data;
+  }
+};
+
 export const getCountries = () => async (dispatch) => {
   dispatch({ type: countAT.GETTING_COUNTRIES, true_or_false: true });
   try {

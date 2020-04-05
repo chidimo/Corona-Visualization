@@ -7,6 +7,9 @@ const initialState = {
   countryCases: [],
   gettingCountryCases: true,
 
+  mostRecentCase: { _id: '' },
+  gettingMostRecentCase: true,
+
   gettingCasesByCountryName: true,
 };
 
@@ -29,6 +32,10 @@ export const cont = (state = initialState, action) => {
   case countAT.GET_CASES_BY_COUNTRY_NAME:
     return { ...state, countryCases: action.cases };
 
+  case countAT.GET_MOST_RECENT_CASE:
+    return { ...state, mostRecentCase: action.result && action.result[0] };
+  case countAT.GETTING_MOST_RECENT_CASE:
+    return { ...state, gettingMostRecentCase: action.true_or_false };
   default:
     return state;
   }

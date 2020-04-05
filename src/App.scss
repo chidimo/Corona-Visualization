@@ -49,21 +49,29 @@
     .nav-item a:hover {
       text-decoration: none;
     }
+
+    .countries-searchbox {
+      border-bottom: 1px solid #ececec;
+    }
+
+    .countries-list {
+      padding: 0;
+      overflow-y: auto;
+      align-items: flex-start;
+      max-height: calc(100vh - 9rem);
+    }
   }
 
   .right-sidebar {
+    padding: 2rem 0;
+    text-align: left;
     border-left: 1px solid #ececec;
-  }
 
-  .countries-searchbox {
-    border-bottom: 1px solid #ececec;
-  }
-
-  .countries-list {
-    padding: 0;
-    overflow-y: auto;
-    align-items: flex-start;
-    max-height: calc(100vh - 9rem);
+    .most-recent-case {
+      overflow: auto;
+      align-items: flex-start;
+      max-height: calc(100vh - 9rem);
+    }
   }
 }
 

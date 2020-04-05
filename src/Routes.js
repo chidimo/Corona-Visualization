@@ -25,7 +25,7 @@ export const Routes = () => {
 
         <Container fluid className="top-level-container">
           <Row className="top-level-row">
-            <Col sm className="left-column">
+            <Col sm="2" className="left-column">
               <SidebarLeft />
             </Col>
 
@@ -38,7 +38,7 @@ export const Routes = () => {
               </Router>
             </Col>
 
-            <Col sm className="right-column">
+            <Col sm="2" className="right-column">
               <SidebarRight />
             </Col>
           </Row>
