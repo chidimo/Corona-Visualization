@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   getFirstCase,
-  getMostRecentCase,
   getFirstDeath,
   cleanFirstCase,
   cleanFirstDeath,
+  getMostRecentCase,
   cleanMostRecentCase,
 } from './countries/redux/countActions';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { BorderSpinner } from './Spinners';
 import { localeFromTSOrdinal } from '../dateUtils';
 
@@ -45,53 +47,55 @@ const SidebarRight = () => {
 
   return (
     <Container fluid className="right-sidebar sidebar">
-      <Container>
-        <h4>Current status</h4>
-      </Container>
-
-      {gettingMostRecentCase ? (
-        <BorderSpinner />
-      ) : (
-        <Container className="most-recent-case">
-          <h6>{localeFromTSOrdinal(mostRecentCase.recordDate)}</h6>
-          <p>{mostRecentCase.total_cases} total cases</p>
-          <p>{mostRecentCase.new_cases} new cases</p>
-          <p>{mostRecentCase.total_deaths} total deaths</p>
-          <p>{mostRecentCase.new_deaths} new deaths</p>
+      <Container className="right-sidebar-child">
+        <Container>
+          <h5>Current status</h5>
         </Container>
-      )}
 
-      <Container>
-        <h4>Status on day of first case</h4>
-      </Container>
+        {gettingMostRecentCase ? (
+          <BorderSpinner />
+        ) : (
+          <Container className="most-recent-case">
+            <h6>{localeFromTSOrdinal(mostRecentCase.recordDate)}</h6>
+            <p>{mostRecentCase.total_cases} total cases</p>
+            <p>{mostRecentCase.new_cases} new cases</p>
+            <p>{mostRecentCase.total_deaths} total deaths</p>
+            <p>{mostRecentCase.new_deaths} new deaths</p>
+          </Container>
+        )}
 
-      {gettingFirstCase ? (
-        <BorderSpinner />
-      ) : (
-        <Container className="most-recent-case">
-          <h6>{localeFromTSOrdinal(firstCase.recordDate)}</h6>
-          <p>{firstCase.total_cases} total cases</p>
-          <p>{firstCase.new_cases} new cases</p>
-          <p>{firstCase.total_deaths} total deaths</p>
-          <p>{firstCase.new_deaths} new deaths</p>
+        <Container>
+          <h5>Status on day of first case</h5>
         </Container>
-      )}
 
-      <Container>
-        <h4>Status on day of first death</h4>
-      </Container>
+        {gettingFirstCase ? (
+          <BorderSpinner />
+        ) : (
+          <Container className="most-recent-case">
+            <h6>{localeFromTSOrdinal(firstCase.recordDate)}</h6>
+            <p>{firstCase.total_cases} total cases</p>
+            <p>{firstCase.new_cases} new cases</p>
+            <p>{firstCase.total_deaths} total deaths</p>
+            <p>{firstCase.new_deaths} new deaths</p>
+          </Container>
+        )}
 
-      {gettingFirstDeath ? (
-        <BorderSpinner />
-      ) : (
-        <Container className="most-recent-case">
-          <h6>{localeFromTSOrdinal(firstDeath.recordDate)}</h6>
-          <p>{firstDeath.total_cases} total cases</p>
-          <p>{firstDeath.new_cases} new cases</p>
-          <p>{firstDeath.total_deaths} total deaths</p>
-          <p>{firstDeath.new_deaths} new deaths</p>
+        <Container>
+          <h5>Status on day of first death</h5>
         </Container>
-      )}
+
+        {gettingFirstDeath ? (
+          <BorderSpinner />
+        ) : (
+          <Container className="most-recent-case">
+            <h6>{localeFromTSOrdinal(firstDeath.recordDate)}</h6>
+            <p>{firstDeath.total_cases} total cases</p>
+            <p>{firstDeath.new_cases} new cases</p>
+            <p>{firstDeath.total_deaths} total deaths</p>
+            <p>{firstDeath.new_deaths} new deaths</p>
+          </Container>
+        )}
+      </Container>
     </Container>
   );
 };

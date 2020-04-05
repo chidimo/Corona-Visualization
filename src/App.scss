@@ -18,7 +18,6 @@
   }
 
   .middle-column {
-    height: 100%;
     position: sticky;
     padding: 2rem 1rem;
   }
@@ -67,17 +66,17 @@
     text-align: left;
     border-left: 1px solid #ececec;
 
-    .most-recent-case {
+    .right-sidebar-child {
+      padding: 0;
       overflow: auto;
       align-items: flex-start;
-      max-height: calc(100vh - 9rem);
+      max-height: calc(100vh - 6rem);
     }
   }
 }
 
 .country-graph-page {
   overflow-y: auto;
-  max-height: calc(100vh - 2rem);
 
   .country-page-flag-container {
     display: flex;
