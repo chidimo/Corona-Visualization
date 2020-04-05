@@ -24,6 +24,7 @@ import CountryCharts from './pages/countries/CountryCharts';
 // const AllCountries = lazy(() => import('./pages/countries/AllCountries'));
 // const CountryCharts = lazy(() => import('./pages/countries/CountryCharts'));
 
+
 export const Routes = () => {
   return (
     <ErrorBoundary>
