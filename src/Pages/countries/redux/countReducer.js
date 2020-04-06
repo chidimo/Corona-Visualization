@@ -51,6 +51,17 @@ const initialState = {
 
 export const cont = (state = initialState, action) => {
   switch (action.type) {
+  case countAT.GET_COUNTRY_BY_ID:
+    return {
+      ...state,
+      activeCountry:
+          action.country.length > 0 ? action.country[0] : state.activeCountry,
+    };
+  case countAT.GETTING_COUNTRY_BY_ID:
+    return { ...state, gettingCountry: action.true_or_false };
+  case countAT.CLEAN_GET_COUNTRY_BY_ID:
+    return { ...state, activeCountry: { _id: '' } };
+
   case countAT.GET_COUNTRY_BY_NAME:
     return {
       ...state,

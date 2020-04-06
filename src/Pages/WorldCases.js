@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 
-import { getCountryByName } from './countries/redux/countActions';
+import {
+  getCountryById,
+  cleanGetCountry,
+  getCountryByName,
+} from './countries/redux/countActions';
 
 import { DatePicker } from './DatePicker';
 import LineChartWrapper from './LineChartWrapper';
@@ -18,14 +22,22 @@ const WorldCases = () => {
   );
 
   useEffect(() => {
-    getCountryByName('World')(dispatch);
+    getCountryByName('World')(dispatch).then((data) => {
+      const { success, _id } = data;
+      if (success) {
+        getCountryById(_id)(dispatch);
+      }
+    });
+    return () => {
+      cleanGetCountry()(dispatch);
+    };
   }, [ dispatch ]);
 
   const [
-    { newCasesData, newCasesXAxis, newCasesFC },
-    { newDeathsData, newDeathsXAxis, newDeathsFC },
-    { totalCasesData, totalCasesXAxis, totalCasesFC },
-    { totalDeathsData, totalDeathsXAxis, totalDeathsFC },
+    { newCasesData, newCasesXAxis },
+    { newDeathsData, newDeathsXAxis },
+    { totalCasesData, totalCasesXAxis },
+    { totalDeathsData, totalDeathsXAxis },
   ] = useCreateDataset(data, activeCountry._id);
 
   return (
@@ -33,53 +45,67 @@ const WorldCases = () => {
       <CountryPageTitle name={'World'} short_name={''} />
       <DatePicker data={data} dispatch={dataDispatch} />
 
-      <LineChartWrapper
-        tooltipLabel={'Cases'}
-        xAxis={totalCasesXAxis}
-        fontColor={totalCasesFC}
-        graphLabel={'Total cases'}
-        dataSets={[ totalCasesData ]}
-        legendContainerId={'total-cases'}
-        spinner={gettingActiveCountryCases}
-        legendLabel={'Total cases of Covid19'}
-        yAxisLabel={'Total number of Covid19 cases'}
-      />
+      {[
+        {
+          tooltipLabel: 'Cases',
+          xAxis: totalCasesXAxis,
+          graphLabel: 'Total cases',
+          dataSets: [ totalCasesData ],
+          legendContainerId: 'total-cases',
+          spinner: gettingActiveCountryCases,
+          legendLabel: 'Total cases of Covid19',
+        },
+        {
+          tooltipLabel: 'Cases',
+          xAxis: newCasesXAxis,
+          graphLabel: 'New cases',
+          dataSets: [ newCasesData ],
+          legendContainerId: 'new-cases',
+          spinner: gettingActiveCountryCases,
+          legendLabel: 'Total cases of Covid19',
+        },
+        {
+          tooltipLabel: 'Deaths',
+          xAxis: totalDeathsXAxis,
+          graphLabel: 'Total deaths',
+          dataSets: [ totalDeathsData ],
+          legendContainerId: 'total-deaths',
+          spinner: gettingActiveCountryCases,
+          legendLabel: 'Total deaths from Covid19',
+        },
+        {
+          tooltipLabel: 'Deaths',
+          xAxis: newDeathsXAxis,
+          graphLabel: 'New deaths',
+          dataSets: [ newDeathsData ],
+          legendContainerId: 'new-deaths',
+          spinner: gettingActiveCountryCases,
+          legendLabel: 'New deaths from Covid19',
+        },
+      ].map((p, i) => {
+        const {
+          xAxis,
+          spinner,
+          dataSets,
+          graphLabel,
+          legendLabel,
+          tooltipLabel,
+          legendContainerId,
+        } = p;
 
-      <LineChartWrapper
-        xAxis={newCasesXAxis}
-        fontColor={newCasesFC}
-        tooltipLabel={'Cases'}
-        graphLabel={'New cases'}
-        dataSets={[ newCasesData ]}
-        legendContainerId={'new-cases'}
-        spinner={gettingActiveCountryCases}
-        legendLabel={'New cases of Covid19'}
-        yAxisLabel={'Number of new Covid19 cases'}
-      />
-
-      <LineChartWrapper
-        tooltipLabel={'Deaths'}
-        xAxis={totalDeathsXAxis}
-        fontColor={totalDeathsFC}
-        graphLabel={'Total deaths'}
-        dataSets={[ totalDeathsData ]}
-        legendContainerId={'total-deaths'}
-        spinner={gettingActiveCountryCases}
-        legendLabel={'Total deaths from Covid19'}
-        yAxisLabel={'Total number of Covid19 deaths'}
-      />
-
-      <LineChartWrapper
-        tooltipLabel={'Deaths'}
-        xAxis={newDeathsXAxis}
-        fontColor={newDeathsFC}
-        graphLabel={'New deaths'}
-        dataSets={[ newDeathsData ]}
-        legendContainerId={'new-deaths'}
-        spinner={gettingActiveCountryCases}
-        legendLabel={'New deaths from Covid19'}
-        yAxisLabel={'Number of new Covid19 deaths'}
-      />
+        return (
+          <LineChartWrapper
+            key={i}
+            xAxis={xAxis}
+            spinner={spinner}
+            dataSets={dataSets}
+            graphLabel={graphLabel}
+            legendLabel={legendLabel}
+            tooltipLabel={tooltipLabel}
+            legendContainerId={legendContainerId}
+          />
+        );
+      })}
     </Container>
   );
 };

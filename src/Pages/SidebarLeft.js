@@ -70,12 +70,7 @@ const SidebarLeft = () => {
                     alt="Flag"
                   />
                 </div>
-                <SideNavLinks
-                  state={{ name, short_name }}
-                  to={`countries/${_id}`}
-                >
-                  {name}
-                </SideNavLinks>
+                <SideNavLinks to={`countries/${_id}`}>{name}</SideNavLinks>
               </div>
             );
           })}

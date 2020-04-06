@@ -101,7 +101,7 @@ export const getCountryByName = (name) => async (dispatch) => {
     const { country } = data;
     dispatch({ type: countAT.GET_COUNTRY_BY_NAME, country });
     dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
-    return { success: true };
+    return { success: true, _id: country[0]._id };
   } catch (e) {
     const { response } = e;
     const data = response && response.data;
@@ -111,19 +111,23 @@ export const getCountryByName = (name) => async (dispatch) => {
 };
 
 export const getCountryById = (_id) => async (dispatch) => {
-  dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: true });
+  dispatch({ type: countAT.GETTING_COUNTRY_BY_ID, true_or_false: true });
   try {
     const { data } = await axios.get(`/country/${_id}`);
     const { country } = data;
-    dispatch({ type: countAT.GET_COUNTRY_BY_NAME, country });
-    dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
+    dispatch({ type: countAT.GET_COUNTRY_BY_ID, country });
+    dispatch({ type: countAT.GETTING_COUNTRY_BY_ID, true_or_false: false });
     return { success: true };
   } catch (e) {
     const { response } = e;
     const data = response && response.data;
-    dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
+    dispatch({ type: countAT.GETTING_COUNTRY_BY_ID, true_or_false: false });
     return data;
   }
+};
+
+export const cleanGetCountry = () => async (dispatch) => {
+  dispatch({ type: countAT.CLEAN_GET_COUNTRY_BY_ID });
 };
 
 export const getActiveCountryCases = (info) => async (dispatch) => {

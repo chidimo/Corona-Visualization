@@ -11,10 +11,8 @@ const LineChartWrapper = (props) => {
     xAxis,
     spinner,
     dataSets,
-    fontColor,
     graphLabel,
-    yAxisLabel,
-    legendLabel,
+    showLegend,
     tooltipLabel,
     legendContainerId,
   } = props;
@@ -39,11 +37,8 @@ const LineChartWrapper = (props) => {
             <LineChart
               xAxisScale={xAxis}
               dataSets={dataSets}
-              fontColor={fontColor}
-              yAxisLabel={yAxisLabel}
-              legendLabel={legendLabel}
+              showLegend={showLegend}
               tooltipLabel={tooltipLabel}
-              legendContainerId={legendContainerId}
             />
           </Container>
         </Container>
@@ -56,10 +51,8 @@ LineChartWrapper.propTypes = {
   xAxis: PropTypes.array,
   spinner: PropTypes.bool,
   dataSets: PropTypes.array,
-  yAxisLabel: PropTypes.string,
+  showLegend: PropTypes.bool,
   graphLabel: PropTypes.string,
-  fontColor: PropTypes.string,
-  legendLabel: PropTypes.string,
   tooltipLabel: PropTypes.string,
   legendContainerId: PropTypes.string,
 };

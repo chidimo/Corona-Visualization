@@ -87,12 +87,10 @@ const SidebarRight = () => {
                   <Card.Title>
                     {localeFromTSOrdinal(data.recordDate)}
                   </Card.Title>
-                  <Card.Text>
-                    <p>{data.total_cases} total cases</p>
-                    <p>{data.new_cases} new cases</p>
-                    <p>{data.total_deaths} total deaths</p>
-                    <p>{data.new_deaths} new deaths</p>
-                  </Card.Text>
+                  <Card.Text>{data.total_cases} total cases</Card.Text>
+                  <Card.Text>{data.new_cases} new cases</Card.Text>
+                  <Card.Text>{data.total_deaths} total deaths</Card.Text>
+                  <Card.Text>{data.new_deaths} new deaths</Card.Text>
                 </Card.Body>
               )}
             </Card>

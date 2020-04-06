@@ -1,34 +1,20 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Chart, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
-import plugins from './helpers/plugins';
-import chartCallbacks from './helpers/chartCallbacks';
-import { chartConfig } from './helpers/chartConfig';
+import { tooltipConfig, legendConfig } from './helpers/chartConfig';
 
 const LineChart = (props) => {
   let chartReference = useRef();
-  let {
-    dataSets,
-    fontColor,
-    xAxisScale,
-    yAxisLabel,
-    legendLabel,
-    tooltipLabel,
-    legendContainerId,
-  } = props;
+  let { dataSets, showLegend, xAxisScale, tooltipLabel } = props;
 
-  useEffect(() => {
-    const legendContainer = document.getElementById(legendContainerId);
-    if (chartReference && legendContainer) {
-      const leg = chartReference.current.chartInstance.generateLegend();
-      legendContainer.innerHTML = leg;
-    }
-  }, [ chartReference, legendContainerId ]);
-
-  Chart.plugins.register({
-    beforeDraw: plugins.beforeDraw(),
-  });
+  // useEffect(() => {
+  //   const legendContainer = document.getElementById(legendContainerId);
+  //   if (chartReference && legendContainer) {
+  //     const leg = chartReference.current.chartInstance.generateLegend();
+  //     legendContainer.innerHTML = leg;
+  //   }
+  // }, [ chartReference, legendContainerId ]);
 
   return (
     <Line
@@ -40,20 +26,8 @@ const LineChart = (props) => {
         datasets: dataSets,
       }}
       options={{
-        // maintainAspectRatio: false,
-        ...chartConfig(
-          'Number of Covid19 cases',
-          yAxisLabel,
-          tooltipLabel,
-          fontColor,
-          '#FAFCFE',
-          '#111111',
-          fontColor
-        ),
-        legendCallback: chartCallbacks.fillSquareLegend(
-          [ fontColor ],
-          [ legendLabel ]
-        ),
+        legend: legendConfig(showLegend),
+        tooltips: tooltipConfig(tooltipLabel),
       }}
     />
   );
@@ -61,12 +35,9 @@ const LineChart = (props) => {
 
 LineChart.propTypes = {
   dataSets: PropTypes.array,
+  showLegend: PropTypes.bool,
   xAxisScale: PropTypes.array,
-  yAxisLabel: PropTypes.string,
-  fontColor: PropTypes.string,
-  legendLabel: PropTypes.string,
   tooltipLabel: PropTypes.string,
-  legendContainerId: PropTypes.string,
 };
 
 export default React.memo(LineChart);
