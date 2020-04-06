@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React from 'react';
-import axios from 'axios';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
@@ -10,6 +9,7 @@ import store from './store';
 import { Routes } from './Routes';
 
 import './App.scss';
+import './setupAxios';
 import './plot-styles.scss';
 import './react-toastify-styles.scss';
 
@@ -18,8 +18,6 @@ process.env.NODE_ENV === 'production' &&
   Sentry.init({
     dsn: 'https://cfb32132996b43baad8022e6bf6e07eb@sentry.io/1824714',
   });
-
-axios.defaults.baseURL = 'https://coronacharts.herokuapp.com/api/v1';
 
 const App = () => {
   return (
