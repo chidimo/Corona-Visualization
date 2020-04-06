@@ -65,16 +65,16 @@ const SidebarRight = () => {
             spinner: gettingMostRecentCase,
           },
           {
-            bg: 'secondary',
-            data: firstCase,
-            title: 'Day of first case',
-            spinner: gettingFirstCase,
-          },
-          {
             bg: 'danger',
             data: firstDeath,
             title: 'Day of first death',
             spinner: gettingFirstDeath,
+          },
+          {
+            bg: 'secondary',
+            data: firstCase,
+            title: 'Day of first case',
+            spinner: gettingFirstCase,
           },
         ].map((m, i) => {
           const { title, bg, data, spinner } = m;
