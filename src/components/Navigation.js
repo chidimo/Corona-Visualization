@@ -35,6 +35,13 @@ export const Navigation = () => {
             >
               Countries
             </NavLink>
+            <NavLink
+              to="distributions"
+              className="nav-link"
+              data-rb-event-key="countries"
+            >
+              Distributions
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -15,6 +15,7 @@ import Container from 'react-bootstrap/Container';
 const WorldCases = lazy(() => import('./Pages/WorldCases'));
 const SidebarLeft = lazy(() => import('./Pages/SidebarLeft'));
 const SidebarRight = lazy(() => import('./Pages/SidebarRight'));
+const Distributions = lazy(() => import('./Pages/countries/Distributions'));
 const AllCountries = lazy(() => import('./Pages/countries/AllCountries'));
 const CountryCharts = lazy(() => import('./Pages/countries/CountryCharts'));
 
@@ -35,6 +36,7 @@ export const Routes = () => {
                 <WorldCases path="/" />
                 <AllCountries path="countries" />
                 <CountryCharts path="countries/:_id" />
+                <Distributions path="distributions" />
                 <Error404 default />
               </Router>
             </Col>

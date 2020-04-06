@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useParams } from '@reach/router';
 import Container from 'react-bootstrap/Container';
 
@@ -7,8 +7,10 @@ import { DatePicker } from '../DatePicker';
 import LineChartWrapper from '../LineChartWrapper';
 import { CountryPageTitle } from './CountryPageTitle';
 import { useDatePicker, useCreateDataset } from './useCustomHooks';
+import { getCountryById } from './redux/countActions';
 
 const CountryCharts = () => {
+  const dispatch = useDispatch();
   const { _id } = useParams();
   const {
     state: { name, short_name },
@@ -17,6 +19,11 @@ const CountryCharts = () => {
   const [ data, dataDispatch ] = useDatePicker();
   const { gettingActiveCountryCases } = useSelector((state) => state.cont);
 
+  useEffect(() => {
+    if (_id) {
+      getCountryById(_id)(dispatch);
+    }
+  }, [ _id, dispatch ]);
   const [
     { newCasesData, newCasesXAxis, newCasesFC },
     { newDeathsData, newDeathsXAxis, newDeathsFC },

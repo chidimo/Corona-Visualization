@@ -22,6 +22,7 @@ const SidebarRight = () => {
   const _id = match ? match[1] : '';
 
   const {
+    activeCountry,
     firstCase,
     firstDeath,
     mostRecentCase,
@@ -49,6 +50,10 @@ const SidebarRight = () => {
 
   return (
     <Container fluid className="right-sidebar sidebar">
+      <Container>
+        <h3 className="text-primary">{activeCountry.name}</h3>
+      </Container>
+
       <Container className="right-sidebar-child">
         {[
           {

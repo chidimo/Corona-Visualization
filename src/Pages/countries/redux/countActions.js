@@ -110,6 +110,22 @@ export const getCountryByName = (name) => async (dispatch) => {
   }
 };
 
+export const getCountryById = (_id) => async (dispatch) => {
+  dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: true });
+  try {
+    const { data } = await axios.get(`/country/${_id}`);
+    const { country } = data;
+    dispatch({ type: countAT.GET_COUNTRY_BY_NAME, country });
+    dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
+    return { success: true };
+  } catch (e) {
+    const { response } = e;
+    const data = response && response.data;
+    dispatch({ type: countAT.GETTING_COUNTRY_BY_NAME, true_or_false: false });
+    return data;
+  }
+};
+
 export const getActiveCountryCases = (info) => async (dispatch) => {
   const { _id, fromDate, toDate } = info;
   dispatch({ type: countAT.GETTING_ACTIVE_COUNTRY_CASES, true_or_false: true });

@@ -11,6 +11,9 @@ const AllCountries = () => {
 
   return (
     <Container>
+      <h1 className="text-danger">
+        Note: This page is still under construction
+      </h1>
       {countries.slice(0, 10).map((c) => {
         const { _id, name, short_name } = c;
         return (
