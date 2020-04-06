@@ -1,1 +1,10 @@
-{"new_cases":0,"new_deaths":0,"total_cases":7,"total_deaths":0,"\_id":"5e8747de49f1353125af6dab","country":"5e87237949f1353125a9228f","recordDate":"2020-03-28T00:00:00.000Z","country_name":"Antigua and Barbuda"},
+# Netlify deploy
+
+1. Get netlify cli
+1. Do not use env variables. It will be set to local values
+1. `yarn build`
+1. `netlify deploy`
+1. `netlify deploy --prod`
+1. Create file `_redirects` inside build folder with the content
+
+        /*    /index.html  200

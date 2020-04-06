@@ -19,9 +19,7 @@ process.env.NODE_ENV === 'production' &&
     dsn: 'https://cfb32132996b43baad8022e6bf6e07eb@sentry.io/1824714',
   });
 
-axios.defaults.baseURL =
-  // eslint-disable-next-line no-undef
-  process.env.REACT_APP_BASE_URL || 'https://coronacharts.herokuapp.com/api/v1';
+axios.defaults.baseURL = 'https://coronacharts.herokuapp.com/api/v1'
 
 const App = () => {
   return (
