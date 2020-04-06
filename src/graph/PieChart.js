@@ -25,9 +25,7 @@ const ActivityPies = () => {
         data-uk-grid
       >
         <div className="uk-width-1-2@m">
-          <div
-            className="graph-grid-child pie-chart-div"
-          >
+          <div className="graph-grid-child pie-chart-div">
             <div className="chart-header">
               <div className="chart-title">
                 <h3>
@@ -56,9 +54,7 @@ const ActivityPies = () => {
         </div>
 
         <div className="uk-width-1-2@m">
-          <div
-            className="graph-grid-child pie-chart-div"
-          >
+          <div className="graph-grid-child pie-chart-div">
             <div className="chart-header">
               <div className="chart-title">
                 <h3>

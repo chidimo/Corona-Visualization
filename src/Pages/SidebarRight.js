@@ -51,7 +51,9 @@ const SidebarRight = () => {
   return (
     <Container fluid className="right-sidebar sidebar">
       <Container>
-        <h3 className="text-primary">{activeCountry.name}</h3>
+        <h3 style={{ wordBreak: 'break-all' }} className="text-primary">
+          {activeCountry.name}
+        </h3>
       </Container>
 
       <Container className="right-sidebar-child">

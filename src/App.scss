@@ -22,61 +22,49 @@
     position: sticky;
     padding: 2rem 1rem;
   }
+}
 
-  .sidebar {
-    top: 4rem;
-    position: sticky;
-    position: -webkit-sticky;
-    height: calc(100vh - 4rem);
-    background-color: #f7f7f7;
+@media only screen and (min-width: 768px) {
+  nav.left-side-nav {
+    flex-direction: column;
+  }
+}
+
+.left-side-nav {
+  top: 4rem;
+  z-index: 1000;
+  position: sticky;
+  text-align: left;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ececec;
+  max-height: calc(100vh - 4rem);
+
+  #basic-navbar-nav {
+    width: 100%;
   }
 
-  .left-sidebar {
-    z-index: 1000;
-    text-align: left;
-    border-right: 1px solid #ececec;
-
-    .nav-item {
-      display: flex;
-      padding: 0.4rem 0;
-      align-items: center;
-    }
-
-    .nav-item a {
-      padding-left: 5px;
-    }
-    .nav-item a.active-side-nav {
-      font-weight: bold;
-      padding-left: 5px;
-    }
-
-    .nav-item a:hover {
-      text-decoration: none;
-    }
-
-    .countries-searchbox {
-      border-bottom: 1px solid #ececec;
-    }
-
-    .countries-list {
-      padding: 0;
-      overflow-y: auto;
-      align-items: flex-start;
-      max-height: calc(100vh - 9rem);
-    }
+  .countries-list {
+    padding: 0;
+    overflow-y: auto;
+    align-items: flex-start;
+    max-height: calc(100vh - 9rem);
   }
+}
 
-  .right-sidebar {
-    padding: 2rem 0;
-    text-align: left;
-    border-left: 1px solid #ececec;
+.right-sidebar {
+  top: 4rem;
+  position: sticky;
+  padding: 2rem 0;
+  text-align: left;
+  background-color: #f7f7f7;
+  height: calc(100vh - 4rem);
+  border-left: 1px solid #ececec;
 
-    .right-sidebar-child {
-      padding: 0 10px;
-      overflow: auto;
-      align-items: flex-start;
-      max-height: calc(100vh - 6rem);
-    }
+  .right-sidebar-child {
+    padding: 0 10px;
+    overflow: auto;
+    align-items: flex-start;
+    max-height: calc(100vh - 6rem);
   }
 }
 

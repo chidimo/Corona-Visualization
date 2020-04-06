@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -44,7 +45,7 @@ const SidebarLeft = () => {
   };
 
   return (
-    <Container className="left-sidebar sidebar">
+    <Navbar collapseOnSelect expand="md" className="left-side-nav">
       <InputGroup className="py-3 countries-searchbox">
         <FormControl
           onChange={(e) => {
@@ -54,29 +55,36 @@ const SidebarLeft = () => {
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
         />
+        <InputGroup.Append>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        </InputGroup.Append>
       </InputGroup>
 
-      {gettingCountries ? (
-        <BorderSpinner />
-      ) : (
+      <Navbar.Collapse id="basic-navbar-nav">
         <Container className="countries-list">
-          {info.displayCountries.map((c) => {
-            const { _id, name, short_name } = c;
-            return (
-              <div className="nav-item card mb-2" key={_id}>
-                <div className="flag-container">
-                  <img
-                    src={`https://www.countryflags.io/${short_name}/shiny/32.png`}
-                    alt="Flag"
-                  />
-                </div>
-                <SideNavLinks to={`countries/${_id}`}>{name}</SideNavLinks>
-              </div>
-            );
-          })}
+          {gettingCountries ? (
+            <BorderSpinner />
+          ) : (
+            <>
+              {info.displayCountries.map((c) => {
+                const { _id, name, short_name } = c;
+                return (
+                  <Container className="left-sidebar-item card mb-2" key={_id}>
+                    <div className="flag-container">
+                      <img
+                        src={`https://www.countryflags.io/${short_name}/shiny/32.png`}
+                        alt="Flag"
+                      />
+                    </div>
+                    <SideNavLinks to={`countries/${_id}`}>{name}</SideNavLinks>
+                  </Container>
+                );
+              })}
+            </>
+          )}
         </Container>
-      )}
-    </Container>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 

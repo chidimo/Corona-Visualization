@@ -40,8 +40,10 @@
     "lint": "./node_modules/.bin/eslint ./src",
     "pretty": "prettier --write '**/*.{ts,js,scss,html,json,md}' '!build/**' '!public/**' '!coverage/**' '!media/**'",
     "postpretty": "yarn lint --fix",
+    "_redirects": "echo '/*    /index.html  200' > build/_redirects",
+    "postbuild": "yarn _redirects",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy --prod"
   },
   "eslintConfig": {
     "extends": "react-app"
