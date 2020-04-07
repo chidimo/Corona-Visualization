@@ -28,6 +28,26 @@ const LineChart = (props) => {
       options={{
         legend: legendConfig(showLegend),
         tooltips: tooltipConfig(tooltipLabel),
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                fontColor: dataSets[0].borderColor,
+              },
+              gridLines: {
+                drawBorder: false,
+                drawOnChartArea: false,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                fontColor: dataSets[0].borderColor,
+              },
+            },
+          ],
+        },
       }}
     />
   );
