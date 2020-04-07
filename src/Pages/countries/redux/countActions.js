@@ -224,3 +224,33 @@ export const getCountryInViewCases = (info) => async (dispatch) => {
     return data;
   }
 };
+
+export const getCasesForADay = (day) => async (dispatch) => {
+  dispatch({ type: countAT.GETTING_CASES_FOR_A_DAY, true_or_false: true });
+  try {
+    const { data } = await axios.get(`/get-cases-by-day?day=${day}`);
+    const { metadata, results } = data;
+    dispatch({
+      metadata,
+      cases: results,
+      type: countAT.GET_CASES_FOR_A_DAY,
+    });
+    dispatch({
+      type: countAT.GETTING_CASES_FOR_A_DAY,
+      true_or_false: false,
+    });
+    return { success: true };
+  } catch (e) {
+    const { response } = e;
+    const data = response && response.data;
+    dispatch({
+      type: countAT.GETTING_CASES_FOR_A_DAY,
+      true_or_false: false,
+    });
+    return data;
+  }
+};
+
+export const cleanGetCasesForDay = () => async (dispatch) => {
+  dispatch({ type: countAT.CLEAN_GET_CASES_FOR_DAY });
+};

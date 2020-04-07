@@ -47,6 +47,9 @@ const initialState = {
 
   allCountriesCases: [],
   gettingCountryInView: true,
+
+  casesForDay: [],
+  gettingCasesForDay: true,
 };
 
 export const cont = (state = initialState, action) => {
@@ -125,6 +128,13 @@ export const cont = (state = initialState, action) => {
     return { ...state, [action.name]: action.cases };
   case countAT.GETTING_COUNTRY_IN_VIEW_CASE:
     return { ...state, gettingCountryInView: action.true_or_false };
+
+  case countAT.GET_CASES_FOR_A_DAY:
+    return { ...state, casesForDay: action.cases, metadata: action.metadata };
+  case countAT.GETTING_CASES_FOR_A_DAY:
+    return { ...state, gettingCasesForDay: action.true_or_false };
+  case countAT.CLEAN_GET_CASES_FOR_DAY:
+    return { ...state, casesForDay: [] };
   default:
     return state;
   }
