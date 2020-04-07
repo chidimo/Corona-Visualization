@@ -11,7 +11,7 @@ import {
 import { DatePicker } from './DatePicker';
 import LineChartWrapper from './LineChartWrapper';
 import { CountryPageTitle } from './countries/CountryPageTitle';
-import { useDatePicker, useCreateDataset } from './countries/useCustomHooks';
+import { useDatePicker, useCreateDataset } from './useCustomHooks';
 
 const WorldCases = () => {
   const dispatch = useDispatch();

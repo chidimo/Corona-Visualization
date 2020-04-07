@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 
-import { bgColors, borderColors } from '../colors';
+import { bgColors, borderColors } from '../../colors';
 
 import {
   getCountryInViewCases,
@@ -12,7 +12,7 @@ import {
 
 import { DatePicker } from '../DatePicker';
 import LineChartWrapper from '../LineChartWrapper';
-import { useDatePicker } from './useCustomHooks';
+import { useDatePicker } from '../useCustomHooks';
 import { CountryPageTitle } from './CountryPageTitle';
 
 const CountryChartsMulti = (props) => {

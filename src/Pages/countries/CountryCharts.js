@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { DatePicker } from '../DatePicker';
 import LineChartWrapper from '../LineChartWrapper';
 import { CountryPageTitle } from './CountryPageTitle';
-import { useDatePicker, useCreateDataset } from './useCustomHooks';
+import { useDatePicker, useCreateDataset } from '../useCustomHooks';
 import { getCountryById, cleanGetCountry } from './redux/countActions';
 
 const CountryCharts = () => {

@@ -1,14 +1,14 @@
 import { useReducer, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { datesRed } from './reducers';
+import { datesRed } from './countries/reducers';
 import { bgColors, borderColors } from '../colors';
-import { ISOStringWithDashFull, localeFromTSMonthShort } from '../../dateUtils';
+import { ISOStringWithDashFull, localeFromTSMonthShort } from '../dateUtils';
 
 import {
   getActiveCountryCases,
   cleanActiveCountryCases,
-} from './redux/countActions';
+} from './countries/redux/countActions';
 
 export const useDatePicker = () => {
   const initState = {
