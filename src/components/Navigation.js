@@ -28,13 +28,13 @@ export const Navigation = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <NavLink
+            {/* <NavLink
               to="countries"
               className="nav-link"
               data-rb-event-key="countries"
             >
               Countries
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="dist/total-cases"
               className="nav-link"

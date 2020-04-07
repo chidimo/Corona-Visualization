@@ -40,17 +40,17 @@ const TotalCases = () => {
 
   return (
     <Container>
-      <h1 className="text-danger">Total cases</h1>
+      <Container style={{ paddingLeft: '3.5rem' }}>
+        <h2>Total cases</h2>
+      </Container>
       {gettingCasesForDay ? (
         <BorderSpinner />
       ) : (
-        <Container>
-          <PieChart
-            title={'Total cases'}
-            labels={totalCasesLabels.current}
-            yAxesData={totalCases.current}
-          />
-        </Container>
+        <PieChart
+          title={'Total cases'}
+          labels={totalCasesLabels.current}
+          yAxesData={totalCases.current}
+        />
       )}
     </Container>
   );

@@ -41,17 +41,17 @@ const NewCases = () => {
 
   return (
     <Container>
-      <h1 className="text-danger">Total deaths</h1>
+      <Container style={{ paddingLeft: '3.5rem' }}>
+        <h2>Total deaths</h2>
+      </Container>
       {gettingCasesForDay ? (
         <BorderSpinner />
       ) : (
-        <Container>
-          <PieChart
-            title={'Total deaths'}
-            labels={totalDeathsLabels.current}
-            yAxesData={totalDeaths.current}
-          />
-        </Container>
+        <PieChart
+          title={'Total deaths'}
+          labels={totalDeathsLabels.current}
+          yAxesData={totalDeaths.current}
+        />
       )}
     </Container>
   );

@@ -70,30 +70,28 @@ export const PieChart = (props) => {
   };
 
   return (
-    <div className="mt-2 mb-2">
-      <HorizontalBar
-        data={data}
-        width={100}
-        height={800}
-        options={{
-          maintainAspectRatio: true,
-          title: {
-            display: false,
-          },
-          legend: {
-            display: false,
-            position: 'left',
-          },
-          // plugins: {
-          //   labels: {
-          //     render: 'label',
-          //     fontColor: '#000',
-          //     position: 'outside',
-          //   },
-          // },
-        }}
-      />
-    </div>
+    <HorizontalBar
+      data={data}
+      width={100}
+      height={800}
+      options={{
+        maintainAspectRatio: true,
+        title: {
+          display: false,
+        },
+        legend: {
+          display: false,
+          position: 'left',
+        },
+        // plugins: {
+        //   labels: {
+        //     render: 'label',
+        //     fontColor: '#000',
+        //     position: 'outside',
+        //   },
+        // },
+      }}
+    />
   );
 };
 
