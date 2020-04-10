@@ -78,7 +78,7 @@ export const useCreateDataset = (data, _id) => {
   const totalCasesData = {
     fill: true,
     lineTension: 0,
-    pointRadius: 0,
+    pointRadius: 2,
     pointHitRadius: 15,
     label: 'Total cases',
     borderColor: borderColors.warning,
@@ -89,7 +89,7 @@ export const useCreateDataset = (data, _id) => {
   const newCasesData = {
     fill: true,
     lineTension: 0,
-    pointRadius: 0,
+    pointRadius: 2,
     pointHitRadius: 15,
     label: 'New cases',
     borderColor: borderColors.success,
@@ -100,7 +100,7 @@ export const useCreateDataset = (data, _id) => {
   const totalDeathsData = {
     fill: true,
     lineTension: 0,
-    pointRadius: 0,
+    pointRadius: 2,
     pointHitRadius: 15,
     label: 'Total deaths',
     borderColor: borderColors.danger,
@@ -111,7 +111,7 @@ export const useCreateDataset = (data, _id) => {
   const newDeathsData = {
     fill: true,
     lineTension: 0,
-    pointRadius: 0,
+    pointRadius: 2,
     pointHitRadius: 15,
     label: 'New deaths',
     borderColor: borderColors.primary,
